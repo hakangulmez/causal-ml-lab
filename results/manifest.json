@@ -1,0 +1,19 @@
+{
+  "seed": 20261007,
+  "elapsed_seconds": 113.6931351670064,
+  "paid_calls": 0,
+  "quick": false,
+  "code": {
+    "src/causal_ml_lab/access.py": "1a81d030d9a2920ffeb7e486c1d5a3cc88a0c620d4a3581ab29a71ffaa46557b",
+    "src/causal_ml_lab/__init__.py": "ef84dd5df0064511d765eb30090ae8e9cc91d0d2cb0957a6a95ec40c679d75c5",
+    "src/causal_ml_lab/core.py": "572ab2057f47d3e830bb2753dafd3a1475c3cc0e132185dfcafc6342472e57cd",
+    "src/causal_ml_lab/runtime.py": "eb36556962eed80eb1e4fdc342fc1dc8079f4c63609dcbb7d69290d1f6716731",
+    "src/causal_ml_lab/pipeline.py": "c81cb531ecc497a7edce46c301e04fbbbf16eba4991c568b3bd09db9edc24630",
+    "src/causal_ml_lab/viz.py": "cca03befc9ffa62893656fbc739ec77448b0682205ea9c3a0403251d7a0f1654"
+  },
+  "n_sipp": 9915,
+  "sipp_semantic_sha256": "d4d4a8a4a06f7ebf89b9b9b96139ef0c2ca31178be728770d6c747f8dc8f51c4",
+  "failures": [],
+  "folds": 5,
+  "scope": "Original simulations; mpdta; approved private SIPP analysis; no thesis access"
+}

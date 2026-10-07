@@ -1,0 +1,2 @@
+term,estimate,se,lo95,hi95,n,estimand,inference
+centered_forest_CATE,1.0772917783453884,0.39259718972884483,0.30781542604521406,1.8467681306455628,4958,Held-out AIPW best linear predictor slope,HC1; conditional on training-half forest/nuisance fits

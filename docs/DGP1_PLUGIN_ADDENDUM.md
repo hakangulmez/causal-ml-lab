@@ -1,0 +1,5 @@
+# V2 additional comparator declaration
+
+Before computing this additional comparator: retain every original DGP 1 result, including its in-sample orthogonal residual score. Add the same genuinely nonorthogonal joint-penalized plug-in as DGP 2 to DGP 1, using its original seeds 20261007+rep, n500, p20 and outcome/treatment generator. Set Lasso alpha=sqrt(2 log(20)/500) analytically, max_iter10000, tol1e-7. Report all 100 draws, with naive conditional HC1 coverage. No selection or coefficient adjustment is permitted.
+
+This addition makes OLS / NaivePlugin / cross-fitted DML available in both designs, while preserving the original NaiveML comparator as an extra DGP 1 row. DGP 1's linear Lasso plug-in is misspecified for nonlinear confounding; DGP 2 isolates shrinkage with a correctly specified sparse linear nuisance. The nuisance learner and dimensions differ across designs, so changes cannot be attributed to cross-fitting alone. Added for an honest estimator definition, not to improve a result.

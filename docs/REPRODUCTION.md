@@ -1,0 +1,9 @@
+# Reproduction and public snapshot
+
+No API key is required. The public SIPP extract and did package example are fetched at runtime for private analysis only; no raw SIPP/county rows are distributed. Python 3.11 and R are required for the full run; `make setup` installs locked Python dependencies and pinned primary R packages into repo-local libraries. R dependency packages already installed on the reader's computer may be read; missing ones install locally. `make all` executes the seeded simulation and empirical replications; `make report` redraws current aggregate results without refitting.
+
+`make quick` is keyless, synthetic and offline. `make test lint` checks estimator properties, source parsing and formatting/types. Full builds require network access to free official/public sources; rate limits and third-party terms still apply. Private data, .env, environments, databases, caches, residuals, shocks, model objects and row-level predictions must never be committed. Public results are aggregate author estimates; original observations are obtained via scripts plus DATA.md, not bundled.
+
+Published Git history begins with a reviewed, allowlisted G3 snapshot. The dated research/declaration documents and source hashes retain provenance; the private development history and acceptance logs are not redistributed. All simulation settings and source selectors are unchanged. Theory PDFs are authored project notes; no thesis or course material is included.
+
+The simulation entrypoint is scripts/run_sparse.py. Its previous filename scripts/sparse.py collided with the optional third-party sparse package during a clean build; the filename changed, while the declared DGP, estimator source and approved aggregate estimates are unchanged. Immutable predeclaration documents retain their historical names and hashes.
