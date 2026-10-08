@@ -1,0 +1,7 @@
+Learner,Arm,n,Clipped,Share,Removed,IPW ESS
+Lasso,Control,6233,0,0.0000,0,4613.7
+Lasso,Treatment,3682,0,0.0000,0,3023.3
+RF,Control,6233,51,0.0082,0,5213.3
+RF,Treatment,3682,3,0.0008,0,1130.5
+GB,Control,6233,0,0.0000,0,5572.0
+GB,Treatment,3682,0,0.0000,0,2422.9

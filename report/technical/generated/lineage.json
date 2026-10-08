@@ -1,0 +1,247 @@
+{
+  "inputs": {
+    "results/technical_model_contract.json": "78dbace4b9b456266e92ce40c815d59afba75b5931888a5f47444952823298ce",
+    "results/manifest.json": "80a1bd80e00643ea6435133f3f403e3591ad2f7fb9f3ad03db053761956354f3",
+    "results/sparse_manifest.json": "96c719c068ec8ff233bc724cd7a8226152b52fd9b482bc38998f65b171e57b55",
+    "results/r_manifest.json": "f5f0a82248eae1edb9359e992bf74bb25cb9491e6c31af3284abbad013039be5",
+    "results/v3_sparse_mc_manifest.json": "3930c8fe386ec8a0fbd701a6a9695d5540910feda02427b9cafddaebf53e3fe4",
+    "results/dml_comparators.csv": "06521964579b6c8c84c7e5de6c77f13060cfabfd987b1c2cd9d08a9b9580b505",
+    "results/pension.csv": "aceee1566091c556d0bf48834ce705431440bb5e62ad4ffca6c65387b96e04f9",
+    "results/mpdta_group_time.csv": "43f8abc5ec2e8abd3c5b631420b386aef0f7fa81d6c68e8fce476941a0a736a0",
+    "results/did_monte_carlo.csv": "f93cd4b6fb193589f18591be1f563cfbd5fdb28051bc30be05d01b539b5f8cda",
+    "results/mpdta_estimates.csv": "177c7715e943814397ef23c93ddb991252c12c0bffc54988d9a9d9d434284756",
+    "results/forest_blp.csv": "4066a7add4cc6255b8c00281b7fcedfd22a11efb6e03e53bf3dd9b8e3d962132",
+    "results/income_group_ate.csv": "fa067f8e2ccc8dcb6d3d9fc39aee1c443ba8db1d8606ffd92ea3d56067a36379",
+    "results/honestdid.csv": "cd7f0d674857338783df2bbe4c256d6a3d1bdd9f8dcb434ad669d0e3d45eaaf5",
+    "results/continuous.csv": "844330f88a5a153648eedcdf35a206cbfb995e4aab2278bf6c8cb8d67b0c2f0b",
+    "results/mpdta_event.csv": "3f751ad2af48661e3d29b0c703061af9225170d283d1388587d532b8ae7d6674",
+    "results/bacon.csv": "e7a988849c61d6170a18cb89909ea1eeaf1a669fe950327c5a79077b62a32327",
+    "results/v3_overlap.csv": "46d556c94671841a4132d05f0d9b62beb2d9a8f546b45563133f0e55b16ee652",
+    "results/v3_rf_irm_sensitivity.csv": "910b8c37c33666c518eccc8708fed1cc98bb7a63856e4fd8434b9b72fa5fad49",
+    "results/v3_balanced_event.csv": "f5cbee191641710c7a57fd9795bc3c77b374c01591adc5cfaf9d46d4747ebc68",
+    "results/v3_balanced_cohort_weights.csv": "bfac51624a246eaf43db0541e690248de5a9712efc142fdf2e6d2307317b530b",
+    "results/v3_cohort_event_support.csv": "08ae2ce91e048fd94bb2a4e97fcac7d7ec5ca1195dabf4aa303ca6852ab07173",
+    "results/v3_sparse_bias_mechanism.json": "de39fae995ab3b84985b2e3996743c4b88cebf2442d3645d9fbf60e6a9284494",
+    "results/v3_irm_refit_comparison.csv": "9c26afb8eb57fda1402739600ca4c37abaec14fe847475e10c2d4be16f941935",
+    "results/v3_nonlinear_mc.csv": "c9b840a2dc31b79bcbf675db9138041bfea328ebafd2944cf6e612382091e1f5",
+    "results/v3_r_did_mc.csv": "68897f8529b79de0f6b5ff15c4723147f3137a13a0e4b6853946d315ae3d1efe",
+    "figures/technical_headline.png": "aa3ce71bc04749f067d1d9ccc7b182e113d08f3042ef67d34525a27122eeac02",
+    "figures/pension.png": "777c99f80be44bec79a44e75de1795019285f2a9eeb4ac39f1c8585c236f83f7",
+    "figures/v3_overlap.png": "834722695d1ec8a8cb57e05ce9afe548fa46447c512b5849fe6123251bc444b9",
+    "figures/event_study.png": "2c7d125e424cf896fd64c30af5dbe343e449ecf52d83ae2bfb570798fca5d695",
+    "figures/v3_balanced_event.png": "21fecd2831e62cc76b70e76b060045c4a19a60a5f02330c9855e4bc586b71803"
+  },
+  "prose_macros": {
+    "SIPPExtractYear": {
+      "value": 1991,
+      "rendered": "1991"
+    },
+    "SIPPYear": {
+      "value": 1990,
+      "rendered": "1990"
+    },
+    "OriginalN": {
+      "value": 500,
+      "rendered": "500"
+    },
+    "OriginalP": {
+      "value": 20,
+      "rendered": "20"
+    },
+    "OriginalTrees": {
+      "value": 60,
+      "rendered": "60"
+    },
+    "OriginalDepth": {
+      "value": 2,
+      "rendered": "2"
+    },
+    "RPanelN": {
+      "value": 300,
+      "rendered": "300"
+    },
+    "PythonPanelN": {
+      "value": 400,
+      "rendered": "400"
+    },
+    "SparseIterations": {
+      "value": 10000,
+      "rendered": "10000"
+    },
+    "SparseTolerance": {
+      "value": 1e-07,
+      "rendered": "1e-07"
+    },
+    "SampleN": {
+      "value": 9915,
+      "rendered": "9915"
+    },
+    "Folds": {
+      "value": 5,
+      "rendered": "5"
+    },
+    "Seed": {
+      "value": 20261007,
+      "rendered": "20261007"
+    },
+    "SparseN": {
+      "value": 600,
+      "rendered": "600"
+    },
+    "SparseP": {
+      "value": 200,
+      "rendered": "200"
+    },
+    "ActiveP": {
+      "value": 5,
+      "rendered": "5"
+    },
+    "Replications": {
+      "value": 1000,
+      "rendered": "1000"
+    },
+    "SparseAlpha": {
+      "value": 0.13289491295190142,
+      "rendered": "0.132895"
+    },
+    "SparseSeed": {
+      "value": 20261008,
+      "rendered": "20261008"
+    },
+    "TrueEffect": {
+      "value": 1.0,
+      "rendered": "1"
+    },
+    "MPRows": {
+      "value": 2500,
+      "rendered": "2500"
+    },
+    "MPStart": {
+      "value": 2003,
+      "rendered": "2003"
+    },
+    "MPEnd": {
+      "value": 2007,
+      "rendered": "2007"
+    },
+    "Clip": {
+      "value": 0.01,
+      "rendered": "0.01"
+    },
+    "OriginalNaiveBias": {
+      "value": 0.0065583993808376,
+      "rendered": "0.007"
+    },
+    "OriginalNaiveRMSE": {
+      "value": 0.0502407747405129,
+      "rendered": "0.050"
+    },
+    "OriginalNaiveCoverage": {
+      "value": 94.3,
+      "rendered": "94"
+    },
+    "OriginalPluginBias": {
+      "value": 0.5920383256788564,
+      "rendered": "0.592"
+    },
+    "OriginalPluginRMSE": {
+      "value": 0.598852595095999,
+      "rendered": "0.599"
+    },
+    "OriginalPluginCoverage": {
+      "value": 0.0,
+      "rendered": "0"
+    },
+    "OriginalDMLBias": {
+      "value": 0.038864684881737,
+      "rendered": "0.039"
+    },
+    "OriginalDMLRMSE": {
+      "value": 0.0723222444860929,
+      "rendered": "0.072"
+    },
+    "OriginalDMLCoverage": {
+      "value": 92.2,
+      "rendered": "92"
+    },
+    "SparsePluginBias": {
+      "value": 0.6099425871550186,
+      "rendered": "0.610"
+    },
+    "SparsePluginRMSE": {
+      "value": 0.6100925073926959,
+      "rendered": "0.610"
+    },
+    "SparsePluginCoverage": {
+      "value": 0.0,
+      "rendered": "0"
+    },
+    "SparseDMLBias": {
+      "value": 0.0027145541043346,
+      "rendered": "0.003"
+    },
+    "SparseDMLRMSE": {
+      "value": 0.0402112414746307,
+      "rendered": "0.040"
+    },
+    "SparseDMLCoverage": {
+      "value": 93.8,
+      "rendered": "94"
+    },
+    "PensionPoint": {
+      "value": 8172.337519830659,
+      "rendered": "8172"
+    },
+    "PensionLow": {
+      "value": 5795.39412792566,
+      "rendered": "5795"
+    },
+    "PensionHigh": {
+      "value": 10549.28091173566,
+      "rendered": "10549"
+    },
+    "HoldoutN": {
+      "value": 4958,
+      "rendered": "4958"
+    },
+    "BLPPoint": {
+      "value": 1.0772917783453884,
+      "rendered": "1.077"
+    },
+    "BLPLow": {
+      "value": 0.307815426045214,
+      "rendered": "0.308"
+    },
+    "BLPHigh": {
+      "value": 1.8467681306455628,
+      "rendered": "1.847"
+    },
+    "PopulationBias": {
+      "value": 0.6122448979591837,
+      "rendered": "0.612245"
+    },
+    "ProjectedCovariance": {
+      "value": 0.08163265306122448,
+      "rendered": "0.081633"
+    },
+    "MechanismPenalty": {
+      "value": 0.13289491295190142,
+      "rendered": "0.132895"
+    },
+    "LassoRefitDifference": {
+      "value": 7.542324374298914e-05,
+      "rendered": "0.000075423"
+    },
+    "SensitivityRV": {
+      "value": 8.41073077751139,
+      "rendered": "8.411"
+    },
+    "SensitivityRVa": {
+      "value": 4.94038498659369,
+      "rendered": "4.940"
+    }
+  },
+  "estimation": false,
+  "paid_calls": 0,
+  "source": "empirical result aggregates; presentation only"
+}

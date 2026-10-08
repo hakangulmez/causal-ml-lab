@@ -1,0 +1,5 @@
+group,lower,upper,rule,grouping_cutoffs
+1,-9.0,19302.0,held-out empirical income quartile; right-closed; first lower endpoint included,computed from heldout income; not pre-specified numerical thresholds
+2,19302.0,31153.5,held-out empirical income quartile; right-closed; first lower endpoint included,computed from heldout income; not pre-specified numerical thresholds
+3,31153.5,48300.0,held-out empirical income quartile; right-closed; first lower endpoint included,computed from heldout income; not pre-specified numerical thresholds
+4,48300.0,199041.0,held-out empirical income quartile; right-closed; first lower endpoint included,computed from heldout income; not pre-specified numerical thresholds

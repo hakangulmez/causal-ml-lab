@@ -1,0 +1,11 @@
+{
+  "active": 5,
+  "treatment_loading": 1.5,
+  "var_signal": 5.0,
+  "var_treatment": 12.25,
+  "cov_treatment_signal": 7.5,
+  "fixed_penalty": 0.13289491295190142,
+  "unadjusted_population_bias": 0.6122448979591837,
+  "projected_active_covariance": 0.08163265306122448,
+  "finite_sample_plugin_bias": 0.6099425871550186
+}

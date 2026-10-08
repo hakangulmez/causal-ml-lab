@@ -1,0 +1,27 @@
+{
+  "block": "nonlinear",
+  "budget_seconds": 600,
+  "target_repetitions": 1000,
+  "completed_repetitions": 1000,
+  "verified_reused_repetitions": 100,
+  "new_completed_repetitions": 900,
+  "replay_checks": [
+    {
+      "rep": 0,
+      "matched": true,
+      "seed": 20261007
+    },
+    {
+      "rep": 99,
+      "matched": true,
+      "seed": 20261106
+    }
+  ],
+  "failures": [],
+  "elapsed_seconds": 598.6159586660215,
+  "stop_rule": "time or1000 only; incomplete/failed matched draws excluded",
+  "seed_sequence": "20261007+rep0",
+  "protocol_sha256": "cfa56e3268e7a595101f493ac2888d92235f89aa79bc56cda208bc3dd678f6d8",
+  "code_sha256": "cef78a95441ead9c9736229b58f504bb915132749e1a56fb48dbcf29309b567e",
+  "paid_calls": 0
+}

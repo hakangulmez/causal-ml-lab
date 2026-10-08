@@ -164,7 +164,7 @@ if (root / "results/income_group_ate.csv").exists():
     ax.set(
         xlabel="Held-out income quartile",
         ylabel="Eligibility group ATE (thousand USD)",
-        title="Held-out AIPW income-group effects",
+        title="Held-out AIPW income-quartile-group effects",
     )
     fig.text(
         0.02,
@@ -311,9 +311,9 @@ write_note(
     + question
     + "\n\n"
     + method
-    + "\n\n![Headline](figures/headline.png)\n\n[Read the two-page policy note (PDF)](report/policy_note.pdf) · [Full technical report](report/report.md)\n\n## Findings\n\n"
+    + "\n\n![Headline](figures/headline.png)\n\n[Read the two-page policy note (PDF)](report/policy_note.pdf) · [Technical working paper (PDF)](report/technical_report.pdf) · [Full technical report](report/report.md)\n\n## Findings\n\n"
     + "\n".join("- " + x for x in findings)
-    + "\n\n## Reproduce\n\nInstall Python 3.11, uv, Git and R. `make setup all` uses repo-local Python/R environments and runtime public-data fetching. `make quick` is isolated and offline; `make test lint`. See [reproduction notes](docs/REPRODUCTION.md). Only V2 simulation: scripts/run_sparse.py. No API key, paid calls or raw redistribution.\n\n## Technical notes\n\n"
+    + "\n\n## Reproduce\n\n`make setup all` uses repo-local Python/R environments and runtime public-data fetching. `make quick` is isolated and offline; `make test lint`. Only V2 simulation: scripts/run_sparse.py. No API key, paid calls or raw redistribution.\n\n## Technical notes\n\n"
     + technical
     + "\n\n## Licence\n\nCode is MIT-licensed; third-party source data retain their original terms and are not included. Publication files and safety checks are documented in [docs/PUBLISH_CHECKLIST.md](docs/PUBLISH_CHECKLIST.md).\n\nHakan Zeki Gulmez | [GitHub](https://github.com/hakangulmez) | [LinkedIn](https://www.linkedin.com/in/hakan-zeki-g%C3%BClmez-088700180/)\n"
 )

@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Monte Carlo uncertainty and comparator labels}
+\begin{tabularx}{\linewidth}{Xp{0.31\linewidth}rr}
+\toprule
+Design & Estimator & Coverage MC SE & Bias MC SE \\
+\midrule
+Nonlinear & Cross-fitted DML & 0.0085 & 0.0019 \\
+Nonlinear & In-sample orthogonal ML & 0.0073 & 0.0016 \\
+Nonlinear & Linear Lasso plug-in & 0.0000 & 0.0029 \\
+Nonlinear & OLS & 0.0000 & 0.0028 \\
+Sparse & Cross-fitted DML & 0.0076 & 0.0013 \\
+Sparse & Linear Lasso plug-in & 0.0000 & 0.0004 \\
+Sparse & OLS & 0.0076 & 0.0016 \\
+\bottomrule
+\end{tabularx}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Source: author's calculations from the documented inputs.\allowbreak{} A zero binomial plug-in SE at zero coverage is not certainty: use the nonzero Wilson upper endpoint in the main table.\allowbreak{}\end{minipage}
+\end{table}

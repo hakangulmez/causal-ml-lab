@@ -24,7 +24,7 @@ def test_simulation_resumes_and_preserves_original(tmp_path):
     (tmp_path / "results").mkdir()
     for name in ["DGP2_PREDECLARATION.md", "DGP1_PLUGIN_ADDENDUM.md"]:
         (tmp_path / "docs" / name).write_bytes((source / "docs" / name).read_bytes())
-    original = (source / "results/monte_carlo.csv").read_bytes()
+    original = (source / "versions/v2-2026-10-07/results/monte_carlo.csv").read_bytes()
     (tmp_path / "results/monte_carlo.csv").write_bytes(original)
     first = run(tmp_path, repetitions=3)
     table = pd.read_csv(tmp_path / "results/dml_two_dgps.csv")

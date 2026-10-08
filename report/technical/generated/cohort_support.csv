@@ -1,0 +1,16 @@
+cohort,event,time,observed_calendar,group_time_available,reference,balanced_included
+2004,-2,2002,False,False,False,False
+2006,-2,2004,True,True,False,True
+2007,-2,2005,True,True,False,True
+2004,-1,2003,True,True,True,False
+2006,-1,2005,True,True,True,True
+2007,-1,2006,True,True,True,True
+2004,0,2004,True,True,False,False
+2006,0,2006,True,True,False,True
+2007,0,2007,True,True,False,True
+2004,1,2005,True,True,False,False
+2006,1,2007,True,True,False,False
+2007,1,2008,False,False,False,False
+2004,2,2006,True,True,False,False
+2006,2,2008,False,False,False,False
+2007,2,2009,False,False,False,False

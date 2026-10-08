@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Cohort-by-event-time support before balanced aggregation}
+\begin{tabularx}{\linewidth}{Xrrrrrr}
+\toprule
+cohort & event & time & observed\_\allowbreak{}calendar & group\_\allowbreak{}time\_\allowbreak{}available & reference & balanced\_\allowbreak{}included \\
+\midrule
+2004 & -2 & 2002 & False & False & False & False \\
+2006 & -2 & 2004 & True & True & False & True \\
+2007 & -2 & 2005 & True & True & False & True \\
+2004 & -1 & 2003 & True & True & True & False \\
+2006 & -1 & 2005 & True & True & True & True \\
+2007 & -1 & 2006 & True & True & True & True \\
+2004 & 0 & 2004 & True & True & False & False \\
+2006 & 0 & 2006 & True & True & False & True \\
+2007 & 0 & 2007 & True & True & False & True \\
+2004 & 1 & 2005 & True & True & False & False \\
+2006 & 1 & 2007 & True & True & False & False \\
+2007 & 1 & 2008 & False & False & False & False \\
+2004 & 2 & 2006 & True & True & False & False \\
+2006 & 2 & 2008 & False & False & False & False \\
+2007 & 2 & 2009 & False & False & False & False \\
+\bottomrule
+\end{tabularx}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Source: v3\_\allowbreak{}cohort\_\allowbreak{}event\_\allowbreak{}support.\allowbreak{}csv; non-existing event cells are unsupported, not fabricated.\allowbreak{} The balanced comparison uses only2006/2007 at-2,-1,0.\allowbreak{} balance\_\allowbreak{}e concerns post-treatment exposure,not balanced pre-treatment support.\allowbreak{}\end{minipage}
+\end{table}

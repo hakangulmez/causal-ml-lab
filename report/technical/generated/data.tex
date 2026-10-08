@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Analysis inputs and estimand-defining variables}
+\begin{tabularx}{\linewidth}{p{0.20\linewidth}p{0.31\linewidth}p{0.27\linewidth}X}
+\toprule
+Variable & Source / ID & Transformation & Sample \\
+\midrule
+Y: net financial assets & Public SIPP extract; net\_\allowbreak{}tfa & Level, historical USD & 9915 persons \\
+D: eligibility & Same extract; e401 & Binary; not participation & Same sample \\
+X: continuous & age, inc, educ, fsize & Levels; train-fold scaling for linear learner & Same sample \\
+X: indicators & marr, twoearn, db, pira, hown & As supplied & Same sample \\
+Panel outcome & County panel; lemp & Log teen employment & 2003–2007 \\
+Adoption / adjustment & mpdta: first.treat, lpop & Cohort year / log population & 2500 county-year rows \\
+Simulation variables & Author-constructed simulations & Gaussian confounding; known potential outcomes & Seeded Monte Carlo designs \\
+Dose example & Author-constructed dose design & Dose-specific effect and derivative & Original synthetic draw \\
+\bottomrule
+\end{tabularx}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Sources: results/manifest.\allowbreak{}json, r\_\allowbreak{}manifest.\allowbreak{}json, pension.\allowbreak{}csv, mpdta\_\allowbreak{}group\_\allowbreak{}time.\allowbreak{}csv.\allowbreak{} Historical SIPP measurements refer to the extract described in DATA.\allowbreak{}md; no raw rows are included.\allowbreak{}\end{minipage}
+\end{table}

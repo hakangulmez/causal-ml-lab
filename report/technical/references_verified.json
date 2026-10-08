@@ -1,0 +1,264 @@
+{
+  "dml": {
+    "doi": "10.1111/ectj.12097",
+    "title": "Double/debiased machine learning for treatment and structural parameters",
+    "authors": [
+      "Victor Chernozhukov",
+      "Denis Chetverikov",
+      "Mert Demirer",
+      "Esther Duflo",
+      "Christian Hansen",
+      "Whitney Newey",
+      "James Robins"
+    ],
+    "journal": "The Econometrics Journal",
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          1,
+          16
+        ]
+      ]
+    },
+    "volume": "21",
+    "issue": "1",
+    "page": "C1-C68",
+    "verified_url": "https://api.crossref.org/works/10.1111%2Fectj.12097",
+    "verified_on": "2026-10-07",
+    "published_print": {
+      "date-parts": [
+        [
+          2018,
+          2,
+          1
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2018,
+          1,
+          16
+        ]
+      ]
+    },
+    "reverified_on": "2026-10-07",
+    "verification": "fresh Crossref DOI registration response; DOI, title and author count checked",
+    "metadata_sha256": "38145b03b65d09a6579cc82ffaa400c13955ef39a7e797aac12666119030962c"
+  },
+  "doubleml": {
+    "title": "DoubleML – An Object-Oriented Implementation of Double Machine Learning in Python",
+    "authors": [
+      "Philipp Bach",
+      "Victor Chernozhukov",
+      "Malte S. Kurz",
+      "Martin Spindler"
+    ],
+    "journal": "Journal of Machine Learning Research",
+    "published": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "volume": "23",
+    "issue": "53",
+    "page": "1–6",
+    "verified_url": "https://jmlr.org/papers/v23/21-0862.html",
+    "verified_on": "2026-10-07",
+    "reverified_on": "2026-10-07",
+    "verification": "official journal HTML, author list, article number and year checked"
+  },
+  "cs": {
+    "doi": "10.1016/j.jeconom.2020.12.001",
+    "title": "Difference-in-Differences with multiple time periods",
+    "authors": [
+      "Brantly Callaway",
+      "Pedro H.C. Sant’Anna"
+    ],
+    "journal": "Journal of Econometrics",
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "volume": "225",
+    "issue": "2",
+    "page": "200-230",
+    "verified_url": "https://api.crossref.org/works/10.1016%2Fj.jeconom.2020.12.001",
+    "verified_on": "2026-10-07",
+    "published_print": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "published_online": null,
+    "reverified_on": "2026-10-07",
+    "verification": "fresh Crossref DOI registration response; DOI, title and author count checked",
+    "metadata_sha256": "eef1110a8c31a52dd6c5e9f60cf4f38c0c2f36941b63571915b9245bd0a907d0"
+  },
+  "sa": {
+    "doi": "10.1016/j.jeconom.2020.09.006",
+    "title": "Estimating dynamic treatment effects in event studies with heterogeneous treatment effects",
+    "authors": [
+      "Liyang Sun",
+      "Sarah Abraham"
+    ],
+    "journal": "Journal of Econometrics",
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "volume": "225",
+    "issue": "2",
+    "page": "175-199",
+    "verified_url": "https://api.crossref.org/works/10.1016%2Fj.jeconom.2020.09.006",
+    "verified_on": "2026-10-07",
+    "published_print": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "published_online": null,
+    "reverified_on": "2026-10-07",
+    "verification": "fresh Crossref DOI registration response; DOI, title and author count checked",
+    "metadata_sha256": "8d8588a5623df27012d916a8c2d080a536bc989c76c8fd9145f7e58a9b40739a"
+  },
+  "bacon": {
+    "doi": "10.1016/j.jeconom.2021.03.014",
+    "title": "Difference-in-differences with variation in treatment timing",
+    "authors": [
+      "Andrew Goodman-Bacon"
+    ],
+    "journal": "Journal of Econometrics",
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "volume": "225",
+    "issue": "2",
+    "page": "254-277",
+    "verified_url": "https://api.crossref.org/works/10.1016%2Fj.jeconom.2021.03.014",
+    "verified_on": "2026-10-07",
+    "published_print": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "published_online": null,
+    "reverified_on": "2026-10-07",
+    "verification": "fresh Crossref DOI registration response; DOI, title and author count checked",
+    "metadata_sha256": "b96b1b2b74f57afb21bce9d9ff986cf001ecd2e01819450de4e5d232806b76b7"
+  },
+  "honest": {
+    "doi": "10.1093/restud/rdad018",
+    "title": "A More Credible Approach to Parallel Trends",
+    "authors": [
+      "Ashesh Rambachan",
+      "Jonathan Roth"
+    ],
+    "journal": "Review of Economic Studies",
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          2,
+          15
+        ]
+      ]
+    },
+    "volume": "90",
+    "issue": "5",
+    "page": "2555-2591",
+    "verified_url": "https://api.crossref.org/works/10.1093%2Frestud%2Frdad018",
+    "verified_on": "2026-10-07",
+    "published_print": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          5
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2023,
+          2,
+          15
+        ]
+      ]
+    },
+    "reverified_on": "2026-10-07",
+    "verification": "fresh Crossref DOI registration response; DOI, title and author count checked",
+    "metadata_sha256": "1ec8051a641d562c575e65c77f58a288655915175ea97714b865a7ca62b21a4b"
+  },
+  "forest": {
+    "doi": "10.1080/01621459.2017.1319839",
+    "title": "Estimation and Inference of Heterogeneous Treatment Effects using Random Forests",
+    "authors": [
+      "Stefan Wager",
+      "Susan Athey"
+    ],
+    "journal": "Journal of the American Statistical Association",
+    "published": {
+      "date-parts": [
+        [
+          2018,
+          6,
+          6
+        ]
+      ]
+    },
+    "volume": "113",
+    "issue": "523",
+    "page": "1228-1242",
+    "verified_url": "https://api.crossref.org/works/10.1080%2F01621459.2017.1319839",
+    "verified_on": "2026-10-07",
+    "published_print": {
+      "date-parts": [
+        [
+          2018,
+          7,
+          3
+        ]
+      ]
+    },
+    "published_online": {
+      "date-parts": [
+        [
+          2018,
+          6,
+          6
+        ]
+      ]
+    },
+    "reverified_on": "2026-10-07",
+    "verification": "fresh Crossref DOI registration response; DOI, title and author count checked",
+    "metadata_sha256": "2672998e15595dc81c105a70d1bc0a74698db8681469f7ac4ffd1342d55cd7e9"
+  }
+}

@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Raw out-of-fold propensity clipping and arm-specific effective sample sizes}
+\begin{tabularx}{\linewidth}{Xlrrrrr}
+\toprule
+Learner & Arm & n & Clipped & Share & Removed & IPW ESS \\
+\midrule
+Lasso & Control & 6233 & 0 & 0.0000 & 0 & 4613.7 \\
+Lasso & Treatment & 3682 & 0 & 0.0000 & 0 & 3023.3 \\
+RF & Control & 6233 & 51 & 0.0082 & 0 & 5213.3 \\
+RF & Treatment & 3682 & 3 & 0.0008 & 0 & 1130.5 \\
+GB & Control & 6233 & 0 & 0.0000 & 0 & 5572.0 \\
+GB & Treatment & 3682 & 0 & 0.0000 & 0 & 2422.9 \\
+\bottomrule
+\end{tabularx}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Source: v3\_\allowbreak{}overlap.\allowbreak{}csv; thresholds0.\allowbreak{}01/0.\allowbreak{}99.\allowbreak{} No observation trimming.\allowbreak{} Weights1/m clipped for treatment,1/(1-m clipped) controls.\allowbreak{} ESS: squared sum of weights divided by sum of squared weights.\allowbreak{} Raw-probability ESS also exported; no score normalization is implied.\allowbreak{}\end{minipage}
+\end{table}

@@ -1,0 +1,3 @@
+Estimator,Estimate,SE,Lower 95%,Upper 95%
+TWFE,-0.0365,0.0133,-0.0625,-0.0105
+CS_simple,-0.0418,0.0115,-0.0643,-0.0192

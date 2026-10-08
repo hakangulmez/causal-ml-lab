@@ -1,3 +1,3 @@
-- Original nonlinear design: V1 in-sample naive ML bias is 0.008, versus 0.600 for the linear Lasso plug-in; OLS bias is 0.642, while cross-fitted DML bias is 0.040 with 94% coverage.
-- With 200 candidate confounders, naive plug-in bias is 0.609 and coverage 0%; cross-fitted DML bias is 0.003, RMSE 0.042 and coverage 94%.
-- The unchanged retirement-account replication estimates $8,172 more net financial assets for eligible people (95% interval $5,795 to $10,549), assuming measured controls remove confounding.
+- In 1,000 sparse-design repetitions, linear Lasso plug-in bias is 0.610, versus 0.003 for cross-fitted DML; nominal 95% coverage is 0.0% versus 93.8%.
+- The nonlinear design qualifies that message: in-sample orthogonal ML bias is 0.007, versus 0.039 for cross-fitted DML. These fixed learner/design comparisons do not establish universal DML superiority.
+- The historical RF–IRM estimate remains $8,172. No observations are trimmed; sensitivity RV is 8.41% and RVa 4.94% under the specified adversarial confounding model, not proof of no confounding.

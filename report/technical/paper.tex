@@ -1,0 +1,186 @@
+\begin{abstract}
+We ask when orthogonal scores improve treatment-effect estimation relative to regularized plug-in methods. We compare two Monte Carlo designs and apply partially linear, interactive-regression and staggered-adoption estimators to retirement-account and county-employment examples. In the sparse simulation, plug-in bias is \SparsePluginBias{} versus \SparseDMLBias{} for cross-fitted double machine learning, whose coverage is \SparseDMLCoverage{} percent. In the nonlinear design, the in-sample orthogonal comparator has bias \OriginalNaiveBias{}, showing that sample splitting does not imply a universal finite-sample ranking. The retirement-account random-forest ATE is \$\PensionPoint{}. Orthogonality reduces nuisance-estimation sensitivity but does not establish unconfoundedness, parallel trends or policy transportability.
+\end{abstract}
+\section{Introduction and contribution}
+Prediction quality and causal identification solve different problems. Flexible prediction can approximate a conditional mean while regularization induces substantial first-order bias in a treatment coefficient. Conversely, a favorable finite-sample performance comparison does not prove that cross-fitting universally improves precision. The empirical question here is when orthogonal scores help in declared designs and what they can establish in observational applications.
+
+\citet{dml} combine Neyman-orthogonal scores with sample splitting; \citet{doubleml} provide the software implementation used in the empirical replication. \citet{cs} define group-time treatment effects under staggered adoption; \citet{sa} address heterogeneous event-study effects; \citet{bacon} decomposes conventional fixed-effects comparisons. \citet{honest} formalize sensitivity to departures from parallel trends. \citet{forest} develop forest-based heterogeneous-effect inference.
+
+The contribution is an auditable laboratory joining estimands, implemented moments and diagnostic accounting. It preserves a nonlinear simulation in which the historic in-sample orthogonal estimator performs well, and adds a predeclared sparse design specifically to illustrate regularization-bias theory, not to tune outcomes. The applications distinguish partial-linear coefficients from ATEs, eligibility from participation, and descriptive forest averages from formally inferred held-out group effects. The paper reports failures and scope cuts alongside successful estimates.
+\section{Data}
+\input{generated/data.tex}
+\subsection{Historical retirement-account extract}
+We obtain the public SIPP extract at runtime and retain it privately.\footnote{Acquisition uses the DoubleML data fetcher; source provenance and the distinction between analysis and redistribution are documented in \code{DATA.md}.} The \SIPPExtractYear{} extract contains measurements referring to \SIPPYear{}; the outcome is net financial assets, and the treatment is eligibility rather than realized participation. We use \SampleN{} observations and the raw covariates in the table, with no winsorization, income filtering, polynomial expansion or missing-row deletion. We preserve native data types when reading cached observations to maintain numerical consistency.
+
+Access for analysis does not establish a separate dataset-redistribution licence. Only aggregate outputs enter this document. We record source provenance, licence scope and software versions in the supplementary documentation. No raw microdata, row-level predictions or private training caches are embedded.
+\subsection{Panel and synthetic inputs}
+We use the county teen-employment panel distributed with the staggered-adoption software.\footnote{The panel is \code{mpdta} in the pinned R \code{did} package.} The analysis includes \MPRows{} county-year rows over \MPStart{}--\MPEnd{}. The population-adjusted group-time design and the unadjusted TWFE design are intentionally distinguished. We construct seeded simulation demonstrations; their potential-outcome functions and nuisance settings are documented below and in the appendix. They are illustrative designs rather than calibrations to a population of policy decisions.
+\section{Econometric model}
+\subsection{Potential outcomes and staggered-adoption estimands}
+For binary eligibility, let $Y_i(1)$ and $Y_i(0)$ be potential financial-asset outcomes and $D_i$ observed eligibility. Consistency implies $Y_i=D_iY_i(1)+(1-D_i)Y_i(0)$. IRM identification requires conditional independence $(Y_i(1),Y_i(0))\perp D_i\mid X_i$ and overlap $0<m_0(X_i)<1$. The target is $\theta_{ATE}=\E[Y_i(1)-Y_i(0)]$. These assumptions cannot be established from fit quality or a positive coefficient.
+
+For a panel, let $G_i$ be first treatment time, with $G_i=0$ denoting never treated; $D_{it}=1\{G_i>0,t\geq G_i\}$. Under consistency, no anticipation and suitable conditional parallel trends, the group-time estimand is
+\begin{equation}
+ ATT(g,t)=\E[Y_{it}(g)-Y_{it}(0)\mid G_i=g],\qquad t\geq g.
+\end{equation}
+The synthetic target averages effects over treated person-time cells. The simple aggregated estimator weights each post-treatment cohort-time effect by cohort size:
+\begin{equation}
+ \theta^{\mathrm{simple}}=\sum_{g>0}\sum_{t\geq g}w_{gt}ATT(g,t),\qquad
+ w_{gt}=\frac{n_g}{\sum_{g'>0}\sum_{t'\geq g'}n_{g'}}.
+\end{equation}
+For the unconditional estimator, we compare outcome changes from $g-1$ to $t$ against never-treated units. For the primary group-time estimator, we use never-treated controls, a universal base period and analytic influence inference, followed by simple aggregation.\footnote{We use the R calls \code{did::att_gt} and \code{aggte(type="simple")}.} Population enters only in the county application. Dynamic aggregation averages cohort effects at common event time, with cohort weights adjusted to available cells.
+
+For the conditional group-time estimator, we write $\Delta Y=Y_t-Y_{g-1}$, $G_g=1(G=g)$, $G_0=1(G=0)$, $p_g(X)=\Pr(G=g\mid G\in\{g,0\},X)$ and $m_{0,gt}(X)=\E[\Delta Y\mid G=0,X]$. Our doubly robust comparison has the normalized-weight moment
+\begin{equation}
+ ATT(g,t)=\E\!\left[\left\{\frac{G_g}{\E G_g}-\frac{p_g(X)G_0/(1-p_g(X))}{\E[p_g(X)G_0/(1-p_g(X))]}\right\}(\Delta Y-m_{0,gt}(X))\right].
+\end{equation}
+The county fit conditions on log population; synthetic fits use the intercept-only version. We use the nuisance-fitting and aggregation settings documented in the appendix.
+
+The TWFE model is $Y_{it}=\alpha_i+\lambda_t+\beta D_{it}+e_{it}$. We use two-way within residualization for the balanced-panel estimator and unit-cluster covariance for the R fixed-effects estimator.\footnote{The latter uses \code{fixest::feols}.} We estimate Sun--Abraham cohort-by-event interactions and aggregate the post-treatment coefficients.\footnote{The R implementation uses \code{fixest::sunab} and \code{aggregate(...,"ATT")}. We use Sun--Abraham because the dCDH estimator could not be installed.} TWFE need not recover the treated-cell target under heterogeneous dynamics because its comparisons can use already-treated units.
+\subsection{PLR and IRM moment conditions; cross-fitting}
+The partially linear model is
+\begin{equation}
+ Y_i=\theta_0 D_i+g_0(X_i)+U_i,\quad \E[U_i\mid D_i,X_i]=0,
+ \qquad D_i=m_0(X_i)+V_i,\quad \E[V_i\mid X_i]=0.
+\end{equation}
+Write $\ell_0(X)=\E[Y\mid X]$. Our partialling-out score uses $\ell$, not the structural nuisance $g$:
+\begin{align}
+ \psi^{PLR}_i(\theta,\ell,m)&=(D_i-m(X_i))\{Y_i-\ell(X_i)-\theta(D_i-m(X_i))\},\\
+ \widehat\theta&=\frac{\sum_i\widehat V_i(Y_i-\widehat\ell_i)}{\sum_i\widehat V_i^2},
+ \qquad \widehat V_i=D_i-\widehat m_i.
+\end{align}
+Neyman orthogonality follows because conditional treatment residuals have mean zero and the score's nuisance derivatives vanish at the truth. With heterogeneous effects, a residualized PLR coefficient is generally an overlap-weighted functional, not the unweighted ATE.
+
+The interactive regression model defines $g_d(X)=\E[Y\mid D=d,X]$. Our ATE moment is
+\begin{align}
+ \psi^{IRM}_i(\theta,g,m)={}&g_1(X_i)-g_0(X_i)
+ +\frac{D_i(Y_i-g_1(X_i))}{m(X_i)}\nonumber\\
+ &-\frac{(1-D_i)(Y_i-g_0(X_i))}{1-m(X_i)}-\theta,
+ \qquad \E[\psi^{IRM}_i]=0.
+\end{align}
+For the empirical linear nuisance family, we use cross-validated Lasso for outcomes and cross-validated L2-penalized logistic regression for treatment probabilities.\footnote{The learners are \code{LassoCV} and \code{LogisticRegressionCV}; the latter retains its default L2 penalty.} We fix the random-forest and gradient-boosting settings before estimation. We clip empirical propensity predictions at the saved threshold \Clip{} and its upper complement. We average scores without normalized-IPW weights. We fit outcomes within treatment arms. Clipping is a numerical convention, not proof of overlap, and can affect the functional where support is weak.
+
+A fixed partition $\{I_k\}_{k=1}^{K}$ supplies training complements $I_k^c$. For $i\in I_k$, we fit nuisances only on $I_k^c$ and predict them on $i$. We use shuffled K-folds in simulations and common stratified folds across empirical PLR/IRM learner combinations. $K=\Folds{}$ with saved seed \Seed{}. We pool all out-of-fold scores for the coefficient, rather than averaging unrelated foldwise regression slopes. The in-sample orthogonal comparator deliberately predicts in-sample using the same orthogonal PLR algebra; it is not the nonorthogonal Lasso plug-in.
+\subsection{Inference, plug-in bias and held-out effects}
+For PLR define $J=\E[V^2]$ and influence $\phi_i=V_i(Y_i-\ell_i-\theta V_i)/J$. For simulation inference, we report
+\begin{equation}
+ \widehat{SE}_{\mathrm{sim}}=\frac{\operatorname{sd}_{n-1}(\widehat\phi_i)}{\sqrt n}.
+\end{equation}
+For empirical inference, we instead use the score second moment and Jacobian:\footnote{These are the analytic score-variance conventions used by DoubleML.} $\widehat{SE}^{2}=n^{-1}\overline{\psi_i^2}/\overline{\partial_\theta\psi_i}^{,2}$. For IRM the Jacobian is minus one. We use analytic normal intervals for empirical inference and the specified normal cutoff for Monte Carlo coverage. For ordinary OLS, we use HC1 sandwich covariance, $(Z'Z)^{-1}(\sum_i Z_iZ_i'e_i^2)(Z'Z)^{-1}n/(n-\dim Z)$.
+
+For the genuine Lasso plug-in, we solve
+\begin{equation}
+ \min_{a,\theta,\gamma}\frac{1}{2n}\sum_i(Y_i-a-\theta D_i-X_i'\gamma)^2+\lambda\|\gamma\|_1.
+\end{equation}
+The intercept and treatment coefficient are unpenalized. We project $Y$ and $X$ off $[1,D]$, fit no-intercept Lasso on those residuals, then regress $Y-X'\widehat\gamma$ on intercept and treatment. Its coefficient condition uses $D$, rather than a residualized treatment against $X$; nuisance shrinkage can therefore create first-order bias. The naive HC1 interval treats fitted nuisance coefficients as fixed. Penalized regressors in this plug-in use their projected native scale; sparse DML nuisances use training-fold standardization. This is not a pure cross-fitting-only comparison.
+
+We assess latent-confounding sensitivity using the official DoubleML IRM definitions. With outcome residual variance $\sigma^2$ and squared Riesz norm $\nu^2$, the adversarial bias bound is
+\begin{equation}
+ B=|\rho|\sqrt{\sigma^2\nu^2 cf_y\frac{cf_d}{1-cf_d}},\qquad \theta\in[\widehat\theta-B,\widehat\theta+B].
+\end{equation}
+Here $cf_y$ is the latent share of outcome residual variation; IRM $cf_d$ measures the relative gain in average conditional treatment precision, not a PLR treatment-residual $R^2$. We set $\rho=1$, both parameters to the Cartesian grid $\{.01,.03,.05,.10\}$, level95\% and null zero. RV is the equal-strength threshold bringing an effect bound to zero; RVa uses confidence bounds. Endpoint confidence limits are one-sided95\% and include estimated influence uncertainty for the bound.\footnote{Definitions and analytic inference: \url{https://docs.doubleml.org/stable/guide/sensitivity.html}.} This model-based exercise is not proof of no confounding.
+
+We train the forest on one random sample half and evaluate on \HoldoutN{} held-out observations. We fit a local orthogonal residual-treatment moment with honest forest splitting.\footnote{The estimator is \code{CausalForestDML}.} A separate training-half nuisance fit yields held-out AIPW scores $\Gamma_i$, equal to the IRM score before subtracting $\theta$. We pre-specify for this diagnostic round four right-closed empirical income quantiles on the original held-out sample. Numeric cutoffs are computed empirically, not retrospectively pre-specified thresholds or forest-discovered groups. Income-quartile ATEs are means of $\Gamma_i$ with sample-mean influence SEs. For the BLP, we regress $\Gamma_i$ on an intercept and centered learned CATE, with HC1 conditional on training fits. Averaged individual forest interval endpoints are only descriptive, not group-mean confidence limits.
+
+DiD inference is unit clustered for R TWFE/Sun--Abraham and analytic influence based for CS. For the county sensitivity calculation, we use the dynamic influence-function covariance and HonestDiD relative-magnitude bounds for the impact effect. We use the analytic influence-function covariance for this calculation.
+\section{Results}
+\subsection{Two simulations and comparator consistency}
+\fig{technical_headline.png}{1.0}{Biases across the original nonlinear and predeclared sparse designs. The original-design panel retains both the in-sample orthogonal estimator and the genuine linear Lasso plug-in. Error bars reflect Monte Carlo uncertainty.}
+\input{generated/simulation.tex}
+In the original design, in-sample orthogonal bias is \OriginalNaiveBias{}, versus \OriginalPluginBias{} for the misspecified linear plug-in and \OriginalDMLBias{} for cross-fitted DML. Its favorable historic naive performance is not removed. In the sparse design, plug-in bias is \SparsePluginBias{} and DML bias \SparseDMLBias{}; DML RMSE is \SparseDMLRMSE{}. Nonlinear DML coverage is \OriginalDMLCoverage{} percent, while sparse-design DML coverage is \SparseDMLCoverage{} percent. These results illustrate the declared mechanisms rather than establishing an invariant ranking over learners and designs.
+The sparse design makes treatment strongly correlated with the active confounders. Residualizing $Y$ and $X$ off intercept and treatment leaves population active covariance \ProjectedCovariance{}, below fixed native-scale Lasso penalty \MechanismPenalty{}. Shrinkage can omit that remaining confounding signal; unadjusted population omitted-confounder bias is \PopulationBias{}, near finite-sample plug-in bias \SparsePluginBias{}. This is population intuition plus an executed finite-sample finding, not universal DML superiority; no penalty is changed.
+\subsection{Historical retirement-account replication}
+\input{generated/pension.tex}
+\fig{pension.png}{0.90}{Stored eligibility estimates with score-based or HC1 intervals. Outcome is historical net financial assets; estimator family and learner are separate choices.}
+The IRM random-forest estimate is \$\PensionPoint{}, with interval [\$\PensionLow{}, \$\PensionHigh{}]. This conditional interpretation assumes the measured covariates remove confounding and the relevant overlap conditions hold. Eligibility is not randomized, and the estimate is not an effect of actual participation or a prediction of a modern retirement-policy reform.
+
+We report all learner/estimator combinations rather than selecting the largest coefficient or narrowest interval. PLR restricts the outcome relation and can weight heterogeneous effects differently from IRM. Numerical differences therefore reflect both nuisance fitting and the estimand, not merely estimator precision. Raw covariates are used even for the linear nuisance family; no more flexible polynomial replication has been silently substituted.
+\input{generated/overlap.tex}
+\fig{v3_overlap.png}{0.88}{Treatment/control distributions of raw out-of-fold propensity predictions, before clipping, with both fixed thresholds marked. No observations are removed.}
+\input{generated/sipp_sensitivity.tex}
+RV is \SensitivityRV{}\% and RVa \SensitivityRVa{}\% under the fixed confounding model. RF and GB refit estimates are unchanged; the Lasso estimate changes by $\$\LassoRefitDifference{}$ because of numerical computation, disclosed in the exported comparison. These diagnostics preserve the target population.
+\subsection{Staggered adoption: simulated and empirical comparisons}
+\input{generated/did_mc.tex}
+\input{generated/mpdta.tex}
+\fig{event_study.png}{0.86}{Saved county dynamic group-time effects, with the universal reference period. The limited pre-period information is retained rather than enlarged through a new event-window fit.}
+The synthetic comparison aligns the treated-cell ATT target across methods. CS and Sun--Abraham handle cohort/event heterogeneity under the declared assumptions; conventional TWFE has different implicit comparisons. The county application additionally changes covariate adjustment between TWFE and CS. Differences are therefore not evidence that one coefficient is a clean causal benchmark for the other. Group-time cells and standard errors remain available in the aggregate results for a reader who wishes to inspect that aggregation.
+\input{generated/balanced.tex}
+\fig{v3_balanced_event.png}{0.92}{Original dynamic event study and late-cohort balanced-window comparison. Fixed cohorts2006/2007 contribute at events-2,-1,0, with-1 the reference. These panels have different estimands and cohort composition.}
+We aggregate retained group-time effects with constant cohort-size weights $w_g=n_g/(n_{2006}+n_{2007})$. Let $\phi_{i,g,e}$ be the retained influence function. Our reference-normalized estimate and influence are
+\begin{equation}
+ \widehat\tau_e=\sum_g w_g(\widehat{ATT}_{g,g+e}-\widehat{ATT}_{g,g-1}),\quad
+ \phi_{i,e}=\sum_g w_g(\phi_{i,g,e}-\phi_{i,g,-1}),\quad
+ \widehat V=N^{-2}\sum_i\phi_i\phi_i'.
+\end{equation}
+Never-treated controls and existing population-adjusted ATT specifications remain unchanged. The limited window changes the target; no balanced[-2,+2] result is claimed. Existing HonestDiD bounds belong to the original dynamic target and are not transported to this comparison.\footnote{The documented \code{balance_e} criterion concerns post-treatment exposure: \url{https://bcallaway11.github.io/did/reference/aggte.html}.}
+\subsection{Heterogeneity and sensitivity}
+\input{generated/groups.tex}
+The held-out calibration slope is \BLPPoint{}, with interval [\BLPLow{}, \BLPHigh{}]. Calibration uses the same held-out AIPW outcome as the group analysis and conditions on the training-half forest/nuisance fits. It checks association between learned heterogeneity and orthogonal effects; it does not prove unconfoundedness or transportability. Income groups are not ranks of the estimated forest score and are not labelled forest-ranked GATES.
+\input{generated/honest.tex}
+The sensitivity bounds already include zero at the strictest saved relative-magnitude setting. Sparse non-reference leads limit the empirical content of the sensitivity exercise. A conventional post-treatment confidence interval and a sensitivity set allowing violations of parallel trends answer different questions. We report the entire predeclared grid, including values that weaken the finding; no threshold was selected to maintain significance.
+
+We compute the underlying covariance as the saved dynamic influence-function cross-product divided by the square of the unit count. The event immediately before treatment is omitted as the normalized reference, and the contrast selects the impact effect. Retained estimator objects remain private; the paper provides aggregate bounds only.
+\section{Robustness}
+\input{generated/robustness.tex}
+The two declared designs intentionally change dimension, nuisance family and confounding shape. Their contrast illustrates a theoretical vulnerability of regularized plug-in estimation and cannot isolate the effect of sample splitting alone. The original in-sample orthogonal comparator remains a distinct row in the table, with identical labelling in the figure and interpretation.
+
+The fixed overlap/sensitivity grid is reported, but no clipping-grid, repeated-split or outcome-transformation sensitivity is added. We use Sun--Abraham because the dCDH estimator could not be installed. Inference choices, data restrictions and design additions are declared rather than retrofitted to the headline. The complete tables include methods that outperform DML on one metric and alternatives that fail to cover the known effect.
+
+All three blocks target1000 matched repetitions under separate fixed ten-minute limits; pilots/replays count against those limits. Checkpoints omit unfinished or failed repetitions for every estimator in that comparison. Stopping is based only on completion or time, not results. Retained seed sequences and draw specifications are verified before old repetitions are reused. Coverage uncertainty remains finite. We use Wilson intervals even at zero successes, avoiding the misleading certainty suggested by a zero plug-in binomial SE. The appendix records uncertainty and the exact DGP functions.
+\section{Limitations and future work}
+IPW ESS is a weight-concentration diagnostic; it does not include propensity-estimation uncertainty and is not a measure of causal validity.
+Orthogonality reduces sensitivity to nuisance estimation under rate, regularity and identification conditions; it does not repair omitted confounders, reverse causality, interference or lack of common support. In the historical application, some covariates are contemporaneous, so a claim that all controls precede eligibility is unwarranted. The observational assumptions remain the principal limit on causal interpretation.
+
+Both synthetic designs are modest, finite simulations. Their learner families, dimensions and nuisance scaling differ. The genuine Lasso plug-in is deliberately evaluated with naive nuisance-fixed inference, while the historic in-sample orthogonal comparator uses a different score. Neither is a universal stand-in for all naive machine learning. The sparse design was added to illustrate theory before its draws, not to tune results; the retained nonlinear panel visibly qualifies the broader message.
+
+The county illustration has sparse leads, limited calendar support and distinct adjustment across estimators. HonestDiD bounds should not be interpreted as verification of parallel trends. Sun--Abraham addresses heterogeneous event-time effects; it does not implement the dCDH estimator. Forest calibration and group inference are conditional on the training-half fits; one sample split supplies limited evidence on split sensitivity.
+
+Package-level convergence details and learner warnings were not exhaustively exported into the saved aggregate results. Their absence is marked as unreported rather than asserted successful. Source data licence scope permits the analysis described here with private retention and does not authorize redistribution. The county illustration does not establish effects for a modern German minimum-wage reform.
+\section{Conclusion}
+The laboratory demonstrates why a treatment-effect procedure must be described by its estimand and moment, not simply by the phrase ``machine learning.'' Sparse regularization creates severe plug-in bias in the declared design, while an orthogonal cross-fitted estimator performs well. The original nonlinear design preserves a favorable in-sample orthogonal result, preventing an overgeneralized cross-fitting narrative.
+
+The empirical and panel examples extend the same discipline: state unconfoundedness or parallel trends, preserve all declared comparators, report inference appropriate to the score, and distinguish descriptive heterogeneity from formal group effects. We report the estimates together with the identifying assumptions and limits of each application.
+Future work includes matched-learner/scaling/oracle factorials, correlated and denser or $p\geq n$ designs, fuller RMSE/mean-SE Monte Carlo uncertainty, score concentration and observed-confounding benchmarks, repeated splits and DAG-based control sensitivity, wealth-outcome/transportability checks, income-group contrasts and forest-ranked groups, matched-covariate DiD comparisons, balanced-target sensitivity and pretrend-power studies, and observational continuous-dose designs. These substantive review extensions are deferred without tuning this round.
+\input{references.tex}
+\clearpage
+\appendix
+\begingroup\small
+\section{Implementation and reproducibility}
+We implement PLR moments and HC1 inference in \code{core.py}; the partially penalized Lasso and sparse design in \code{sparse.py}; DoubleML and held-out forest/AIPW estimators in \code{pipeline.py}; and staggered-adoption, sensitivity and decomposition estimators in \code{scripts/did.R}. Environment locks record package versions and default settings.
+
+\section{Monte Carlo design and estimator definitions}
+We use the following nonlinear DGP:
+\begin{align}
+ X_i&\sim N(0,I),\quad U_i,V_i\sim N(0,1),\\
+ D_i&=\tfrac12 X_{i1}^{2}+\sin(X_{i2})+V_i,\\
+ Y_i&=D_i+X_{i1}^{2}+\cos(X_{i2})+\tfrac12 X_{i4}+U_i.
+\end{align}
+The original design uses $n=\OriginalN{}$, $p=\OriginalP{}$, with \Replications{} repetitions; gradient boosting uses \OriginalTrees{} trees of maximum depth \OriginalDepth{}. A linear nuisance is misspecified. The sparse DGP uses $n=\SparseN{}$, $p=\SparseP{}$, \ActiveP{} active independent Gaussian coordinates:
+\begin{equation}
+ D_i=1.5\sum_{j=1}^{\ActiveP}X_{ij}+V_i,\qquad
+ Y_i=D_i+\sum_{j=1}^{\ActiveP}X_{ij}+U_i.
+\end{equation}
+The true effect is \TrueEffect{}, with \Replications{} repetitions and seed \SparseSeed{} plus the repetition index. The fixed sparse Lasso penalty is $\sqrt{2\log p/n}=\SparseAlpha{}$. Sparse DML standardizes within each training fold; OLS controls all candidate coordinates; the joint partially penalized plug-in uses its native projected scale. The sparse solver cap is \SparseIterations{} iterations with tolerance \SparseTolerance{}; the saved aggregates do not expose per-fit convergence paths.
+
+The staggered synthetic panel has $G_i\in\{0,3,5,7\}$, with treatment absorbing at adoption. Its known effect is
+\begin{equation}
+ \tau_{it}=D_{it}(t-G_i+1)\{1+0.7\,1(G_i=5)+1.5\,1(G_i=7)\},
+ \quad Y_{it}=\alpha_i+0.15t+\tau_{it}+e_{it}.
+\end{equation}
+The Python and R engines use sample sizes \PythonPanelN{} and \RPanelN{}, respectively, with different random generators; their draws are not pooled. Within each R draw, all estimators use the same treated-cell truth. Bias is the mean estimation error; RMSE is its quadratic mean; bias MC SE is the error sample SD divided by the square root of repetitions. Coverage tests the known truth against each reported normal interval. With $R$ completed repetitions, coverage MCSE is $\sqrt{\widehat c(1-\widehat c)/R}$; Wilson intervals accompany it. Zero plug-in MCSE at coverage zero or one is not certainty.
+\input{generated/mc_uncertainty.tex}
+\input{generated/did_mc_uncertainty.tex}
+\section{Event diagnostics, decomposition and dose estimands}
+\input{generated/balanced_weights.tex}
+\input{generated/cohort_support.tex}
+\input{generated/event.tex}
+\input{generated/bacon.tex}
+The Goodman--Bacon decomposition checks that weighted components reconstruct the unadjusted TWFE coefficient. Positive comparison weights do not eliminate problematic already-treated comparisons or guarantee positive implicit weights on heterogeneous treatment effects. Unit-root tests, VAR lag diagnostics and IRF bootstraps are not applicable to these cross-sectional/panel examples. Learner convergence histories are unreported in the saved results.
+
+For the independent dose illustration, $X\sim U[0,1]$, $D=0.2+0.6X+U[0,0.2]$, and $a=1+2X$. Known outcomes obey
+\begin{equation}
+ Y(d)-Y(0)=ad+\tfrac12 d^2,\qquad \partial_dY(d)=a+d.
+\end{equation}
+The reported dose-group ATT averages the known effect at realized dose, while ACRT averages its known derivative. Selection on gains makes them different. These descriptive synthetic quantities are not a continuous-dose DiD estimate from observational data.
+\input{generated/continuous.tex}
+\endgroup

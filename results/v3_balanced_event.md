@@ -1,0 +1,5 @@
+| event | estimate | se | lo95 | hi95 | cohorts | weights | target | controls | covariates | reference |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| -2 | 0.0232439871700129 | 0.014467127834287 | -0.0051110623449265 | 0.0515990366849523 | 2006;2007 | 0.233918128654971;0.766081871345029 | late-cohort balanced-window ATT; constant cohort-size weights | never-treated | lpop | -1 |
+| -1 | 0.0 | 0.0 | 0.0 | 0.0 | 2006;2007 | 0.233918128654971;0.766081871345029 | late-cohort balanced-window ATT; constant cohort-size weights | never-treated | lpop | -1 |
+| 0 | -0.0218241833117243 | 0.0125267047639854 | -0.0463760734941019 | 0.0027277068706534 | 2006;2007 | 0.233918128654971;0.766081871345029 | late-cohort balanced-window ATT; constant cohort-size weights | never-treated | lpop | -1 |

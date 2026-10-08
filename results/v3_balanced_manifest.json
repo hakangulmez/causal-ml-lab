@@ -1,0 +1,14 @@
+{
+  "original_if_sha256": "044beadafdfa75ab7e3d4e1fafdbde93d0503b36dfdfe1bad288fc39d0fd89fb",
+  "original_data_sha256": "e39bc4d0a2eb3ada5b553ef2b013ec1cdbd0050691216d0afca3debce4b4cd51",
+  "protocol_sha256": "cfa56e3268e7a595101f493ac2888d92235f89aa79bc56cda208bc3dd678f6d8",
+  "code_sha256": "9adca0cf8f37e9d4d82724ec611254524bcc9c2debe6634331e1605b6882b7b0",
+  "n_influence_units": 500,
+  "cohorts": [2006, 2007],
+  "weights": [0.2339, 0.7661],
+  "events": [-2, -1, 0],
+  "constant_weights": true,
+  "new_group_time_fits": false,
+  "original_sensitivity_transferred": false,
+  "paid_calls": 0
+}

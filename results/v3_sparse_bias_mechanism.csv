@@ -1,0 +1,2 @@
+active,treatment_loading,var_signal,var_treatment,cov_treatment_signal,fixed_penalty,unadjusted_population_bias,projected_active_covariance,finite_sample_plugin_bias
+5,1.5,5.0,12.25,7.5,0.13289491295190142,0.6122448979591837,0.08163265306122448,0.6099425871550186

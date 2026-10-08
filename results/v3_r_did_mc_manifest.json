@@ -1,0 +1,27 @@
+{
+  "block": "R_DiD",
+  "budget_seconds": 600,
+  "target_repetitions": 1000,
+  "completed_repetitions": 1000,
+  "verified_reused_repetitions": 100,
+  "new_completed_repetitions": 900,
+  "replay_checks": [
+    {
+      "rep": 1,
+      "matched": true,
+      "seed": 20261008
+    },
+    {
+      "rep": 100,
+      "matched": true,
+      "seed": 20261107
+    }
+  ],
+  "failures": [],
+  "elapsed_seconds": 107.8317,
+  "seed_sequence": "20261007+rep, rep1..1000",
+  "protocol_sha256": "cfa56e3268e7a595101f493ac2888d92235f89aa79bc56cda208bc3dd678f6d8",
+  "code_sha256": "a94bfa406cd8e70403b09d1459944a3d6af14b47380152a1b0208c9adc291709",
+  "paid_calls": 0,
+  "stop_rule": "time or completion only; unfinished rep excluded"
+}

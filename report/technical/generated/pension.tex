@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Historical eligibility and net financial assets}
+\begin{tabularx}{\linewidth}{Xlrrrr}
+\toprule
+Estimator & Nuisance & Estimate & SE & Lower 95\% & Upper 95\% \\
+\midrule
+OLS & Linear & 5896 & 1524 & 2909 & 8883 \\
+PLR & Lasso & 6097 & 1464 & 3228 & 8966 \\
+IRM & Lasso & 1279 & 4142 & -6839 & 9398 \\
+PLR & RF & 8833 & 1267 & 6350 & 11316 \\
+IRM & RF & 8172 & 1213 & 5795 & 10549 \\
+PLR & GB & 9196 & 1326 & 6597 & 11795 \\
+IRM & GB & 7917 & 1156 & 5652 & 10183 \\
+\bottomrule
+\end{tabularx}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Source: author's calculations from the documented inputs.\allowbreak{} USD outcome units; PLR and IRM do not generally identify the same functional under heterogeneous effects.\allowbreak{} OLS uses HC1; PLR/IRM use score-based normal intervals.\allowbreak{}\end{minipage}
+\end{table}

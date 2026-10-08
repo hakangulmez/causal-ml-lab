@@ -1,0 +1,4 @@
+Estimator,Repetitions,Bias,RMSE,MC SE,Coverage
+CS,1000,0.001,0.057,0.002,0.96
+SunAbraham,1000,0.001,0.057,0.002,0.94
+TWFE,1000,-1.056,1.060,0.003,0.00

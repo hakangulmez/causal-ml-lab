@@ -1,5 +1,6 @@
 UV ?= $(or $(shell command -v uv),$(HOME)/portfolio/.tools/bin/uv)
-.PHONY: setup data quick all test lint figures report readme-numbers clean
+PYTHON ?= $(UV) run python
+.PHONY: policy-note setup data quick all test lint figures report readme-numbers clean
 setup:
 	$(UV) sync --locked
 	Rscript scripts/setup_r.R
@@ -19,8 +20,22 @@ all:
 data:
 	@echo "Runtime acquisition is part of make all; private data never committed."
 figures readme-numbers:
-	$(UV) run python scripts/outputs.py
+	$(PYTHON) scripts/v3_outputs.py
 report:
-	$(UV) run python scripts/outputs.py
+	$(PYTHON) scripts/technical_report.py
+policy-note:
+	$(PYTHON) scripts/v3_outputs.py
 clean:
 	@echo "Remove generated artifacts explicitly after inspecting them; no automatic data deletion."
+
+.PHONY: v3-diagnostics v3-mc v3-balanced v3-outputs
+v3-diagnostics:
+	$(PYTHON) scripts/v3_diagnostics.py
+v3-mc:
+	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 $(PYTHON) scripts/v3_mc.py nonlinear
+	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 $(PYTHON) scripts/v3_mc.py sparse
+	Rscript scripts/v3_did_mc.R
+v3-balanced:
+	Rscript scripts/v3_balanced.R
+v3-outputs:
+	$(PYTHON) scripts/v3_outputs.py

@@ -1,0 +1,21 @@
+{
+  "code": {
+    "src/causal_ml_lab/sparse.py": "e8b0c5c4f97bb7965a06ca9a79994834a45d275c41faad9bb671bbfc8b3411c4",
+    "src/causal_ml_lab/core.py": "572ab2057f47d3e830bb2753dafd3a1475c3cc0e132185dfcafc6342472e57cd"
+  },
+  "n": 600,
+  "p": 200,
+  "sparsity": 5,
+  "true_effect": 1.0,
+  "seed": 20261008,
+  "repetitions": 100,
+  "alpha": 0.13289491295190142,
+  "folds": 5,
+  "paid_calls": 0,
+  "declaration_sha256": "bae62f28cd2a8694d85a909806c0bbb6334557fdc57d5aaa62fa1f99394874da",
+  "comparator_declaration_sha256": "24689b6e95a24af5efedb17598497b3549390b599906f9bf17be25c22bdac517",
+  "inherited_dgp1_sha256": "8048ee533c1180c392fa5c1e4a47b14eb2e0a080ef4d42bcdff602e5e18bdbed",
+  "elapsed_seconds": 3.114679749996867,
+  "private_cache": "runs/sparse_f42039fb4b6e6ec3.csv",
+  "naive_definition": "NaivePlugin: nonorthogonal joint penalized fit in both; retained DGP1 NaiveML: in-sample orthogonal"
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "implementation metadata; no estimation",
+  "source": [
+    {
+      "path": "src/causal_ml_lab/core.py",
+      "sha256": "572ab2057f47d3e830bb2753dafd3a1475c3cc0e132185dfcafc6342472e57cd"
+    },
+    {
+      "path": "src/causal_ml_lab/pipeline.py",
+      "sha256": "c81cb531ecc497a7edce46c301e04fbbbf16eba4991c568b3bd09db9edc24630"
+    },
+    {
+      "path": "src/causal_ml_lab/sparse.py",
+      "sha256": "e8b0c5c4f97bb7965a06ca9a79994834a45d275c41faad9bb671bbfc8b3411c4"
+    },
+    {
+      "path": "scripts/did.R",
+      "sha256": "2a49be6d056f0959ba98560bdb32d51a7dc8f1b5d442400b2a9dcc45531677a0"
+    },
+    {
+      "path": "DATA.md",
+      "sha256": "46d2031ef54b12104e838d5dc3452e185f60eca781b092811336d23f3229c69d"
+    }
+  ],
+  "dgp1": {
+    "n": 500,
+    "p": 20
+  },
+  "python_did": {
+    "n": 400
+  },
+  "continuous": {
+    "n": 5000
+  },
+  "dgp1_learner": {
+    "n_estimators": 60,
+    "max_depth": 2
+  },
+  "sparse_solver": {
+    "fit_intercept": false,
+    "max_iter": 10000,
+    "tol": 1e-07
+  },
+  "r_did": {
+    "n": 300,
+    "periods": 8
+  },
+  "sipp_extract_year": 1991,
+  "sipp_measurement_year": 1990,
+  "v3_executed_source_ledger": "runs/v3_executed_sources/manifest.json; private, not redistributed"
+}

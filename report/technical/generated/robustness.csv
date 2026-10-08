@@ -1,0 +1,10 @@
+Declared alternative,Specification,Interpretation
+DML comparators,OLS; in-sample orthogonal ML; genuine Lasso plug-in; cross-fitted DML,Both original and sparse designs retained
+Nuisance families,"Linear/Lasso, random forest, gradient boosting",PLR and IRM side-by-side; common folds
+DiD estimator,TWFE; CS; Sun–Abraham,Sun–Abraham; dCDH could not be installed
+DiD adjustment,Unadjusted TWFE; population-adjusted CS,Not a like-for-like estimator-only contrast
+Sensitivity,HonestDiD relative-magnitude grid,Impact contrast and saved covariance
+Heterogeneity,Forest averages; held-out AIPW groups; BLP,Pointwise forest bounds are not group intervals
+Dose estimand,ATT(d) versus ACRT(d),Known synthetic illustration only
+Data preprocessing,Raw covariates; native dtype restoration,"No winsorization, row deletion or polynomial expansion"
+Overlap / inference,Fixed propensity clipping; analytic score SEs,No clipping sensitivity or repeated-split run performed

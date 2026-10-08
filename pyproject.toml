@@ -29,6 +29,7 @@ dev = ["ruff", "mypy", "pytest", "pytest-cov", "types-PyYAML", "detect-secrets"]
 [tool.hatch.build.targets.wheel]
 packages = ["src/causal_ml_lab"]
 [tool.ruff]
+extend-exclude = ["versions"]
 line-length = 100
 [tool.ruff.lint]
 select = ["E", "F", "I"]

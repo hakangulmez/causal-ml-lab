@@ -1,0 +1,8 @@
+Design,Estimator,Coverage MC SE,Bias MC SE
+Nonlinear,Cross-fitted DML,0.0085,0.0019
+Nonlinear,In-sample orthogonal ML,0.0073,0.0016
+Nonlinear,Linear Lasso plug-in,0.0000,0.0029
+Nonlinear,OLS,0.0000,0.0028
+Sparse,Cross-fitted DML,0.0076,0.0013
+Sparse,Linear Lasso plug-in,0.0000,0.0004
+Sparse,OLS,0.0076,0.0016

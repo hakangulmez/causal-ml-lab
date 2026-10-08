@@ -1,0 +1,6 @@
+Engine,Estimator,R,Coverage MCSE,Wilson95%
+Python,CS_unconditional,1000,--,"[--,--]"
+Python,TWFE,1000,0.0000,"[0.0000,0.0038]"
+R,CS,1000,0.0064,"[0.9426,0.9679]"
+R,SunAbraham,1000,0.0072,"[0.9291,0.9575]"
+R,TWFE,1000,0.0000,"[0.0000,0.0038]"

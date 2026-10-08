@@ -1,0 +1,9 @@
+Variable,Source / ID,Transformation,Sample
+Y: net financial assets,Public SIPP extract; net_tfa,"Level, historical USD",9915 persons
+D: eligibility,Same extract; e401,Binary; not participation,Same sample
+X: continuous,"age, inc, educ, fsize",Levels; train-fold scaling for linear learner,Same sample
+X: indicators,"marr, twoearn, db, pira, hown",As supplied,Same sample
+Panel outcome,County panel; lemp,Log teen employment,2003–2007
+Adoption / adjustment,"mpdta: first.treat, lpop",Cohort year / log population,2500 county-year rows
+Simulation variables,Author-constructed simulations,Gaussian confounding; known potential outcomes,Seeded Monte Carlo designs
+Dose example,Author-constructed dose design,Dose-specific effect and derivative,Original synthetic draw

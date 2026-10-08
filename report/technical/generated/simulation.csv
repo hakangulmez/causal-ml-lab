@@ -1,0 +1,8 @@
+Design,Estimator,Bias,RMSE,MC SE,Coverage,Wilson 95%
+Nonlinear,OLS,0.633,0.639,0.003,0.00,"[0.0000, 0.0038]"
+Nonlinear,In-sample orthogonal ML,0.007,0.050,0.002,0.94,"[0.9269, 0.9557]"
+Nonlinear,Linear Lasso plug-in,0.592,0.599,0.003,0.00,"[0.0000, 0.0038]"
+Nonlinear,Cross-fitted DML,0.039,0.072,0.002,0.92,"[0.9037, 0.9371]"
+Sparse,OLS,0.001,0.051,0.002,0.94,"[0.9213, 0.9513]"
+Sparse,Linear Lasso plug-in,0.610,0.610,0.000,0.00,"[0.0000, 0.0038]"
+Sparse,Cross-fitted DML,0.003,0.040,0.001,0.94,"[0.9213, 0.9513]"
