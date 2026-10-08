@@ -20,11 +20,11 @@ all:
 data:
 	@echo "Runtime acquisition is part of make all; private data never committed."
 figures readme-numbers:
-	$(PYTHON) scripts/v3_outputs.py
+	$(PYTHON) scripts/public_presentation.py
 report:
 	$(PYTHON) scripts/technical_report.py
 policy-note:
-	$(PYTHON) scripts/v3_outputs.py
+	$(PYTHON) scripts/public_presentation.py
 clean:
 	@echo "Remove generated artifacts explicitly after inspecting them; no automatic data deletion."
 
@@ -38,4 +38,4 @@ v3-mc:
 v3-balanced:
 	Rscript scripts/v3_balanced.R
 v3-outputs:
-	$(PYTHON) scripts/v3_outputs.py
+	$(PYTHON) scripts/public_presentation.py

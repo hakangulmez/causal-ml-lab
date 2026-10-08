@@ -1,5 +1,5 @@
 [
-  "In 1,000 sparse-design repetitions, linear Lasso plug-in bias is 0.610, versus 0.003 for cross-fitted DML; nominal 95% coverage is 0.0% versus 93.8%.",
-  "The nonlinear design qualifies that message: in-sample orthogonal ML bias is 0.007, versus 0.039 for cross-fitted DML. These fixed learner/design comparisons do not establish universal DML superiority.",
-  "The historical RF\u2013IRM estimate remains $8,172. No observations are trimmed; sensitivity RV is 8.41% and RVa 4.94% under the specified adversarial confounding model, not proof of no confounding."
+  "In 1,000 sparse-design simulations, linear Lasso plug-in bias is 0.610, versus 0.003 for cross-fitted DML; 95% interval coverage is 0.0% versus 93.8%.",
+  "Cross-fitting does not always improve the result: in the nonlinear design, in-sample orthogonal ML bias is 0.007, versus 0.039 for cross-fitted DML. These fixed-design comparisons do not establish a universal ranking.",
+  "In the historical SIPP sample, the RF-IRM estimate is $8,172. The sensitivity robustness values are 8.41% for the effect bound and 4.94% for the confidence bound under the specified confounding model; they do not prove absence of confounding."
 ]

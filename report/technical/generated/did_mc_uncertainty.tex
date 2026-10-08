@@ -4,7 +4,7 @@
 \caption{DiD Monte Carlo coverage uncertainty at actual completed counts}
 \begin{tabularx}{\linewidth}{Xlr rX}
 \toprule
-Engine & Estimator & R & Coverage MCSE & Wilson95\% \\
+Engine & Estimator & R & Coverage MCSE & Wilson 95\% \\
 \midrule
 Python & CS\_\allowbreak{}unconditional & 1000 & -- & [--,--] \\
 Python & TWFE & 1000 & 0.0000 & [0.0000,0.0038] \\
@@ -13,5 +13,5 @@ R & SunAbraham & 1000 & 0.0072 & [0.9291,0.9575] \\
 R & TWFE & 1000 & 0.0000 & [0.0000,0.0038] \\
 \bottomrule
 \end{tabularx}
-\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Source: v3\_\allowbreak{}nonlinear\_\allowbreak{}mc.\allowbreak{}csv and v3\_\allowbreak{}r\_\allowbreak{}did\_\allowbreak{}mc.\allowbreak{}csv.\allowbreak{} Python CS has no interval in its original implementation, so coverage is unreported.\allowbreak{} Zero endpoint MCSE is not certainty; engines use separate seeded draws.\allowbreak{}\end{minipage}
+\par\vspace{3pt}\begin{minipage}{\linewidth}\footnotesize Source: author simulations.\allowbreak{} Python CS has no interval in its original implementation, so coverage is unreported.\allowbreak{} Zero endpoint MCSE is not certainty; engines use separate seeded draws.\allowbreak{}\end{minipage}
 \end{table}

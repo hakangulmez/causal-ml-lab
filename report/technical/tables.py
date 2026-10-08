@@ -404,7 +404,7 @@ def generate(csv, js, macro, table, fmt):
             for _, a in overlap.iterrows()
         ],
         "Raw out-of-fold propensity clipping and arm-specific effective sample sizes",
-        "Source: v3_overlap.csv; thresholds0.01/0.99. No observation trimming. Weights1/m clipped for treatment,1/(1-m clipped) controls. ESS: squared sum of weights divided by sum of squared weights. Raw-probability ESS also exported; no score normalization is implied.",
+        "Source: author calculations; thresholds 0.01 and 0.99. No observation trimming. Weights 1/m clipped for treatment, 1/(1-m clipped) controls. ESS: squared sum of weights divided by sum of squared weights. Raw-probability ESS also exported; no score normalization is implied.",
         layout="Xlrrrrr",
         size="footnotesize",
     )
@@ -423,7 +423,7 @@ def generate(csv, js, macro, table, fmt):
             for _, a in sensitivity.iterrows()
         ],
         "RF–IRM sensitivity over the entire fixed confounding grid",
-        "Source: v3_rf_irm_sensitivity.csv. rho1,95% one-sided confidence endpoints for effect bounds,null0,historical USD. RV="
+        "Source: author calculations. rho = 1, 95% one-sided confidence endpoints for effect bounds, null = 0, historical USD. RV="
         + fmt(sensitivity.RV.iloc[0], 6)
         + ", RVa="
         + fmt(sensitivity.RVa.iloc[0], 6)
@@ -439,7 +439,7 @@ def generate(csv, js, macro, table, fmt):
             for _, a in balanced.iterrows()
         ],
         "Late-cohort, balanced-window comparison with reference event minus one",
-        "Source: v3_balanced_event.csv. Cohorts2006/2007,events-2,-1,0;never-treated controls,unchanged population-adjusted ATT(g,t),constant cohort-size weights. Different target from original dynamic analysis; its HonestDiD bounds are not transferred.",
+        "Source: author calculations. Cohorts 2006 and 2007, event times -2, -1 and 0; never-treated controls, unchanged population-adjusted ATT(g, t), constant cohort-size weights. Different target from original dynamic analysis; its HonestDiD bounds are not transferred.",
         layout="Xrrrr",
         size="footnotesize",
     )
@@ -448,7 +448,7 @@ def generate(csv, js, macro, table, fmt):
         list(weights.columns),
         weights.values.tolist(),
         "Included cohorts, fixed weights and event support",
-        "Source: v3_balanced_cohort_weights.csv; support matrix is exported before aggregation. Full row-level influence functions remain private.",
+        "Source: author calculations; support matrix is exported before aggregation. Full row-level influence functions remain private.",
         size="footnotesize",
     )
     table(
@@ -456,7 +456,7 @@ def generate(csv, js, macro, table, fmt):
         list(support.columns),
         support.values.tolist(),
         "Cohort-by-event-time support before balanced aggregation",
-        "Source: v3_cohort_event_support.csv; non-existing event cells are unsupported, not fabricated. The balanced comparison uses only2006/2007 at-2,-1,0. balance_e concerns post-treatment exposure,not balanced pre-treatment support.",
+        "Source: author calculations; non-existing event cells are unsupported, not fabricated. The balanced comparison uses only cohorts 2006 and 2007 at -2, -1 and 0. balance_e concerns post-treatment exposure, not balanced pre-treatment support.",
         size="footnotesize",
     )
 
@@ -465,7 +465,7 @@ def generate(csv, js, macro, table, fmt):
     rmc = csv("v3_r_did_mc.csv")
     table(
         "did_mc_uncertainty",
-        ["Engine", "Estimator", "R", "Coverage MCSE", "Wilson95%"],
+        ["Engine", "Estimator", "R", "Coverage MCSE", "Wilson 95%"],
         [
             [
                 engine,
@@ -478,7 +478,7 @@ def generate(csv, js, macro, table, fmt):
             for _, a in frame.iterrows()
         ],
         "DiD Monte Carlo coverage uncertainty at actual completed counts",
-        "Source: v3_nonlinear_mc.csv and v3_r_did_mc.csv. Python CS has no interval in its original implementation, so coverage is unreported. Zero endpoint MCSE is not certainty; engines use separate seeded draws.",
+        "Source: author simulations. Python CS has no interval in its original implementation, so coverage is unreported. Zero endpoint MCSE is not certainty; engines use separate seeded draws.",
         layout="Xlr rX",
         size="footnotesize",
     )

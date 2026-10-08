@@ -17,22 +17,22 @@ Access for analysis does not establish a separate dataset-redistribution licence
 We use the county teen-employment panel distributed with the staggered-adoption software.\footnote{The panel is \code{mpdta} in the pinned R \code{did} package.} The analysis includes \MPRows{} county-year rows over \MPStart{}--\MPEnd{}. The population-adjusted group-time design and the unadjusted TWFE design are intentionally distinguished. We construct seeded simulation demonstrations; their potential-outcome functions and nuisance settings are documented below and in the appendix. They are illustrative designs rather than calibrations to a population of policy decisions.
 \section{Econometric model}
 \subsection{Potential outcomes and staggered-adoption estimands}
-For binary eligibility, let $Y_i(1)$ and $Y_i(0)$ be potential financial-asset outcomes and $D_i$ observed eligibility. Consistency implies $Y_i=D_iY_i(1)+(1-D_i)Y_i(0)$. IRM identification requires conditional independence $(Y_i(1),Y_i(0))\perp D_i\mid X_i$ and overlap $0<m_0(X_i)<1$. The target is $\theta_{ATE}=\E[Y_i(1)-Y_i(0)]$. These assumptions cannot be established from fit quality or a positive coefficient.
+For binary eligibility, let $Y_i(1)$ and $Y_i(0)$ be potential financial-asset outcomes and $D_i$ observed eligibility. Consistency implies $Y_i=D_iY_i(1)+(1-D_i)Y_i(0)$. IRM identification requires conditional independence $(Y_i(1), Y_i(0))\perp D_i\mid X_i$ and overlap $0<m_0(X_i)<1$. The target is $\theta_{ATE}=\E[Y_i(1)-Y_i(0)]$. These assumptions cannot be established from fit quality or a positive coefficient.
 
-For a panel, let $G_i$ be first treatment time, with $G_i=0$ denoting never treated; $D_{it}=1\{G_i>0,t\geq G_i\}$. Under consistency, no anticipation and suitable conditional parallel trends, the group-time estimand is
+For a panel, let $G_i$ be first treatment time, with $G_i=0$ denoting never treated; $D_{it}=1\{G_i>0, t\geq G_i\}$. Under consistency, no anticipation and suitable conditional parallel trends, the group-time estimand is
 \begin{equation}
- ATT(g,t)=\E[Y_{it}(g)-Y_{it}(0)\mid G_i=g],\qquad t\geq g.
+ ATT(g, t)=\E[Y_{it}(g)-Y_{it}(0)\mid G_i=g],\qquad t\geq g.
 \end{equation}
 The synthetic target averages effects over treated person-time cells. The simple aggregated estimator weights each post-treatment cohort-time effect by cohort size:
 \begin{equation}
- \theta^{\mathrm{simple}}=\sum_{g>0}\sum_{t\geq g}w_{gt}ATT(g,t),\qquad
+ \theta^{\mathrm{simple}}=\sum_{g>0}\sum_{t\geq g}w_{gt}ATT(g, t),\qquad
  w_{gt}=\frac{n_g}{\sum_{g'>0}\sum_{t'\geq g'}n_{g'}}.
 \end{equation}
 For the unconditional estimator, we compare outcome changes from $g-1$ to $t$ against never-treated units. For the primary group-time estimator, we use never-treated controls, a universal base period and analytic influence inference, followed by simple aggregation.\footnote{We use the R calls \code{did::att_gt} and \code{aggte(type="simple")}.} Population enters only in the county application. Dynamic aggregation averages cohort effects at common event time, with cohort weights adjusted to available cells.
 
-For the conditional group-time estimator, we write $\Delta Y=Y_t-Y_{g-1}$, $G_g=1(G=g)$, $G_0=1(G=0)$, $p_g(X)=\Pr(G=g\mid G\in\{g,0\},X)$ and $m_{0,gt}(X)=\E[\Delta Y\mid G=0,X]$. Our doubly robust comparison has the normalized-weight moment
+For the conditional group-time estimator, we write $\Delta Y=Y_t-Y_{g-1}$, $G_g=1(G=g)$, $G_0=1(G=0)$, $p_g(X)=\Pr(G=g\mid G\in\{g,0\}, X)$ and $m_{0, gt}(X)=\E[\Delta Y\mid G=0, X]$. Our doubly robust comparison has the normalized-weight moment
 \begin{equation}
- ATT(g,t)=\E\!\left[\left\{\frac{G_g}{\E G_g}-\frac{p_g(X)G_0/(1-p_g(X))}{\E[p_g(X)G_0/(1-p_g(X))]}\right\}(\Delta Y-m_{0,gt}(X))\right].
+ ATT(g, t)=\E\!\left[\left\{\frac{G_g}{\E G_g}-\frac{p_g(X)G_0/(1-p_g(X))}{\E[p_g(X)G_0/(1-p_g(X))]}\right\}(\Delta Y-m_{0, gt}(X))\right].
 \end{equation}
 The county fit conditions on log population; synthetic fits use the intercept-only version. We use the nuisance-fitting and aggregation settings documented in the appendix.
 
@@ -40,20 +40,20 @@ The TWFE model is $Y_{it}=\alpha_i+\lambda_t+\beta D_{it}+e_{it}$. We use two-wa
 \subsection{PLR and IRM moment conditions; cross-fitting}
 The partially linear model is
 \begin{equation}
- Y_i=\theta_0 D_i+g_0(X_i)+U_i,\quad \E[U_i\mid D_i,X_i]=0,
+ Y_i=\theta_0 D_i+g_0(X_i)+U_i,\quad \E[U_i\mid D_i, X_i]=0,
  \qquad D_i=m_0(X_i)+V_i,\quad \E[V_i\mid X_i]=0.
 \end{equation}
 Write $\ell_0(X)=\E[Y\mid X]$. Our partialling-out score uses $\ell$, not the structural nuisance $g$:
 \begin{align}
- \psi^{PLR}_i(\theta,\ell,m)&=(D_i-m(X_i))\{Y_i-\ell(X_i)-\theta(D_i-m(X_i))\},\\
+ \psi^{PLR}_i(\theta,\ell, m)&=(D_i-m(X_i))\{Y_i-\ell(X_i)-\theta(D_i-m(X_i))\},\\
  \widehat\theta&=\frac{\sum_i\widehat V_i(Y_i-\widehat\ell_i)}{\sum_i\widehat V_i^2},
  \qquad \widehat V_i=D_i-\widehat m_i.
 \end{align}
 Neyman orthogonality follows because conditional treatment residuals have mean zero and the score's nuisance derivatives vanish at the truth. With heterogeneous effects, a residualized PLR coefficient is generally an overlap-weighted functional, not the unweighted ATE.
 
-The interactive regression model defines $g_d(X)=\E[Y\mid D=d,X]$. Our ATE moment is
+The interactive regression model defines $g_d(X)=\E[Y\mid D=d, X]$. Our ATE moment is
 \begin{align}
- \psi^{IRM}_i(\theta,g,m)={}&g_1(X_i)-g_0(X_i)
+ \psi^{IRM}_i(\theta, g, m)={}&g_1(X_i)-g_0(X_i)
  +\frac{D_i(Y_i-g_1(X_i))}{m(X_i)}\nonumber\\
  &-\frac{(1-D_i)(Y_i-g_0(X_i))}{1-m(X_i)}-\theta,
  \qquad \E[\psi^{IRM}_i]=0.
@@ -72,7 +72,7 @@ For the genuine Lasso plug-in, we solve
 \begin{equation}
  \min_{a,\theta,\gamma}\frac{1}{2n}\sum_i(Y_i-a-\theta D_i-X_i'\gamma)^2+\lambda\|\gamma\|_1.
 \end{equation}
-The intercept and treatment coefficient are unpenalized. We project $Y$ and $X$ off $[1,D]$, fit no-intercept Lasso on those residuals, then regress $Y-X'\widehat\gamma$ on intercept and treatment. Its coefficient condition uses $D$, rather than a residualized treatment against $X$; nuisance shrinkage can therefore create first-order bias. The naive HC1 interval treats fitted nuisance coefficients as fixed. Penalized regressors in this plug-in use their projected native scale; sparse DML nuisances use training-fold standardization. This is not a pure cross-fitting-only comparison.
+The intercept and treatment coefficient are unpenalized. We project $Y$ and $X$ off $[1, D]$, fit no-intercept Lasso on those residuals, then regress $Y-X'\widehat\gamma$ on intercept and treatment. Its coefficient condition uses $D$, rather than a residualized treatment against $X$; nuisance shrinkage can therefore create first-order bias. The naive HC1 interval treats fitted nuisance coefficients as fixed. Penalized regressors in this plug-in use their projected native scale; sparse DML nuisances use training-fold standardization. This is not a pure cross-fitting-only comparison.
 
 We assess latent-confounding sensitivity using the official DoubleML IRM definitions. With outcome residual variance $\sigma^2$ and squared Riesz norm $\nu^2$, the adversarial bias bound is
 \begin{equation}
@@ -105,14 +105,14 @@ RV is \SensitivityRV{}\% and RVa \SensitivityRVa{}\% under the fixed confounding
 \fig{event_study.png}{0.86}{Saved county dynamic group-time effects, with the universal reference period. The limited pre-period information is retained rather than enlarged through a new event-window fit.}
 The synthetic comparison aligns the treated-cell ATT target across methods. CS and Sun--Abraham handle cohort/event heterogeneity under the declared assumptions; conventional TWFE has different implicit comparisons. The county application additionally changes covariate adjustment between TWFE and CS. Differences are therefore not evidence that one coefficient is a clean causal benchmark for the other. Group-time cells and standard errors remain available in the aggregate results for a reader who wishes to inspect that aggregation.
 \input{generated/balanced.tex}
-\fig{v3_balanced_event.png}{0.92}{Original dynamic event study and late-cohort balanced-window comparison. Fixed cohorts2006/2007 contribute at events-2,-1,0, with-1 the reference. These panels have different estimands and cohort composition.}
-We aggregate retained group-time effects with constant cohort-size weights $w_g=n_g/(n_{2006}+n_{2007})$. Let $\phi_{i,g,e}$ be the retained influence function. Our reference-normalized estimate and influence are
+\fig{v3_balanced_event.png}{0.92}{Original dynamic event study and late-cohort balanced-window comparison. Fixed cohorts 2006 and 2007 contribute at event times -2, -1 and 0, with -1 the reference. These panels have different estimands and cohort composition.}
+We aggregate retained group-time effects with constant cohort-size weights $w_g=n_g/(n_{2006}+n_{2007})$. Let $\phi_{i, g, e}$ be the retained influence function. Our reference-normalized estimate and influence are
 \begin{equation}
- \widehat\tau_e=\sum_g w_g(\widehat{ATT}_{g,g+e}-\widehat{ATT}_{g,g-1}),\quad
- \phi_{i,e}=\sum_g w_g(\phi_{i,g,e}-\phi_{i,g,-1}),\quad
+ \widehat\tau_e=\sum_g w_g(\widehat{ATT}_{g, g+e}-\widehat{ATT}_{g, g-1}),\quad
+ \phi_{i, e}=\sum_g w_g(\phi_{i, g, e}-\phi_{i, g,-1}),\quad
  \widehat V=N^{-2}\sum_i\phi_i\phi_i'.
 \end{equation}
-Never-treated controls and existing population-adjusted ATT specifications remain unchanged. The limited window changes the target; no balanced[-2,+2] result is claimed. Existing HonestDiD bounds belong to the original dynamic target and are not transported to this comparison.\footnote{The documented \code{balance_e} criterion concerns post-treatment exposure: \url{https://bcallaway11.github.io/did/reference/aggte.html}.}
+Never-treated controls and existing population-adjusted ATT specifications remain unchanged. The limited window changes the target; no balanced [-2,+2] result is claimed. Existing HonestDiD bounds belong to the original dynamic target and are not transported to this comparison.\footnote{The documented \code{balance_e} criterion concerns post-treatment exposure: \url{https://bcallaway11.github.io/did/reference/aggte.html}.}
 \subsection{Heterogeneity and sensitivity}
 \input{generated/groups.tex}
 The held-out calibration slope is \BLPPoint{}, with interval [\BLPLow{}, \BLPHigh{}]. Calibration uses the same held-out AIPW outcome as the group analysis and conditions on the training-half forest/nuisance fits. It checks association between learned heterogeneity and orthogonal effects; it does not prove unconfoundedness or transportability. Income groups are not ranks of the estimated forest score and are not labelled forest-ranked GATES.
@@ -126,7 +126,7 @@ The two declared designs intentionally change dimension, nuisance family and con
 
 The fixed overlap/sensitivity grid is reported, but no clipping-grid, repeated-split or outcome-transformation sensitivity is added. We use Sun--Abraham because the dCDH estimator could not be installed. Inference choices, data restrictions and design additions are declared rather than retrofitted to the headline. The complete tables include methods that outperform DML on one metric and alternatives that fail to cover the known effect.
 
-All three blocks target1000 matched repetitions under separate fixed ten-minute limits; pilots/replays count against those limits. Checkpoints omit unfinished or failed repetitions for every estimator in that comparison. Stopping is based only on completion or time, not results. Retained seed sequences and draw specifications are verified before old repetitions are reused. Coverage uncertainty remains finite. We use Wilson intervals even at zero successes, avoiding the misleading certainty suggested by a zero plug-in binomial SE. The appendix records uncertainty and the exact DGP functions.
+We compare estimators on the same \Replications{} completed seeded repetitions within each experiment. Seed sequences and draw specifications are held fixed, and incomplete or failed repetitions are excluded consistently across estimators. Coverage uncertainty remains finite. We use Wilson intervals even at zero successes, avoiding the misleading certainty suggested by a zero plug-in binomial SE. The appendix records uncertainty and the exact DGP functions.
 \section{Limitations and future work}
 IPW ESS is a weight-concentration diagnostic; it does not include propensity-estimation uncertainty and is not a measure of causal validity.
 Orthogonality reduces sensitivity to nuisance estimation under rate, regularity and identification conditions; it does not repair omitted confounders, reverse causality, interference or lack of common support. In the historical application, some covariates are contemporaneous, so a claim that all controls precede eligibility is unwarranted. The observational assumptions remain the principal limit on causal interpretation.
@@ -151,7 +151,7 @@ We implement PLR moments and HC1 inference in \code{core.py}; the partially pena
 \section{Monte Carlo design and estimator definitions}
 We use the following nonlinear DGP:
 \begin{align}
- X_i&\sim N(0,I),\quad U_i,V_i\sim N(0,1),\\
+ X_i&\sim N(0, I),\quad U_i, V_i\sim N(0,1),\\
  D_i&=\tfrac12 X_{i1}^{2}+\sin(X_{i2})+V_i,\\
  Y_i&=D_i+X_{i1}^{2}+\cos(X_{i2})+\tfrac12 X_{i4}+U_i.
 \end{align}

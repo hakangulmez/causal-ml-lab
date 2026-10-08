@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 [project]
 name = "causal-ml-lab"
 version = "0.0.0"
-description = "Modern DiD, double machine learning and heterogeneity; local research draft"
+description = "Modern DiD, double machine learning and heterogeneity"
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "pydantic>=2,<3",

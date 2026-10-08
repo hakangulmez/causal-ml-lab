@@ -1,0 +1,10 @@
+{
+  "inputs": {
+    "v3_nonlinear_mc.csv": "c9b840a2dc31b79bcbf675db9138041bfea328ebafd2944cf6e612382091e1f5",
+    "v3_sparse_mc.csv": "eaf594e51bddeab61fa0a17c1aabd28dc75839cf6beda59b5f84455ba93e0ca0",
+    "pension.csv": "aceee1566091c556d0bf48834ce705431440bb5e62ad4ffca6c65387b96e04f9",
+    "v3_rf_irm_sensitivity.csv": "910b8c37c33666c518eccc8708fed1cc98bb7a63856e4fd8434b9b72fa5fad49"
+  },
+  "render_only": true,
+  "estimation": false
+}

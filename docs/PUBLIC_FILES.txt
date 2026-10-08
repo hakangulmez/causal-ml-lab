@@ -10,6 +10,8 @@ docs/DESIGN.md
 docs/DGP1_PLUGIN_ADDENDUM.md
 docs/DGP2_PREDECLARATION.md
 docs/METHODS.md
+docs/PRESENTATION_CHANGELOG.md
+docs/PROVENANCE.md
 docs/PUBLICATION_VALIDATION.json
 docs/PUBLIC_FILES.txt
 docs/PUBLIC_V3_PROVENANCE.json
@@ -128,6 +130,7 @@ results/mpdta_group_time.csv
 results/mpdta_group_time.md
 results/pension.csv
 results/pension.md
+results/policy_note_lineage.json
 results/r_coverage.csv
 results/r_coverage.md
 results/r_manifest.json
@@ -158,6 +161,7 @@ scripts/audit.py
 scripts/did.R
 scripts/outputs.py
 scripts/policy.py
+scripts/public_presentation.py
 scripts/research.py
 scripts/run.py
 scripts/run_sparse.py
