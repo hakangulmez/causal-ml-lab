@@ -19,7 +19,7 @@
     },
     {
       "path": "DATA.md",
-      "sha256": "46d2031ef54b12104e838d5dc3452e185f60eca781b092811336d23f3229c69d"
+      "sha256": "eacb6c131994069da997989f83363b04ff8a33bfa00153bc52321a1946933103"
     }
   ],
   "dgp1": {
@@ -47,5 +47,13 @@
   },
   "sipp_extract_year": 1991,
   "sipp_measurement_year": 1990,
-  "v3_executed_source_ledger": "runs/v3_executed_sources/manifest.json; private, not redistributed"
+  "v3_executed_source_ledger": "runs/v3_executed_sources/manifest.json; private, not redistributed",
+  "publication_documentation_rebinding": [
+    {
+      "path": "DATA.md",
+      "old": "46d2031ef54b12104e838d5dc3452e185f60eca781b092811336d23f3229c69d",
+      "new": "eacb6c131994069da997989f83363b04ff8a33bfa00153bc52321a1946933103",
+      "reason": "Existing public data-licence documentation wording; numerical/estimator settings unchanged"
+    }
+  ]
 }
