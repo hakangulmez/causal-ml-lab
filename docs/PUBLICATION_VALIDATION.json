@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-08",
+  "accepted_version": "V3",
+  "source_commit": "fdc6fcb497c80a8bbd18a9697a709b554c6dc90c",
+  "tested_candidate_commit": "bfe7699b37d5ebfa15e03fd83ca7fcd9ffb82f40",
+  "fresh_clone_python_tests": 16,
+  "lint_format_type": "passed",
+  "quick": "synthetic/offline passed",
+  "report_build": "aggregate-only, no credentials/raw data; PDF text equal to accepted files",
+  "policy_pages": 2,
+  "technical_pages": 15,
+  "estimator_sources_match_approved": true,
+  "data_redistributed": false,
+  "private_history_merged": false,
+  "MIT": true,
+  "scope": "Code, approved aggregate outputs and report sources/PDFs; legacy empirical runtime build tested separately and never promoted over V3",
+  "known_secret_file_matches": 0,
+  "known_secret_history_matches": 0,
+  "ESS_clarification": "IPW ESS is a weight-concentration diagnostic; it does not include propensity-estimation uncertainty and is not a measure of causal validity.",
+  "R_checks": "coverage/accounting and balanced-cohort IF checks passed",
+  "legacy_full_build": "passed",
+  "legacy_runtime_audit_checks": 36,
+  "prior_scan": {
+    "repo": "causal-ml-lab",
+    "file_count": 189,
+    "credential_matches": 0,
+    "history_blobs": 217,
+    "ignore_probes": 18,
+    "raw_private_thesis_paths": 0,
+    "MIT": true,
+    "heuristic_flags": 208
+  },
+  "scans_repeated_before_push": true,
+  "published_report_sha256": {
+    "policy_note.pdf": "d0af66fb88cc1df3edc95432d00e11c47273d266c5c92ac87953c0bfed36eeaa",
+    "technical_report.pdf": "3ff27e2d38162a694bc271b5dec8d1f65af85c4d93ab2bd9d654dad50282a8b5"
+  }
+}
