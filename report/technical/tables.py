@@ -177,8 +177,8 @@ def generate(csv, js, macro, table, fmt):
         "Staggered-adoption simulations with the same treated-cell ATT target",
         (
             "Source: results/did_monte_carlo.csv; R simulation. Unit-cluster inference "
-            "for TWFE/Sun–Abraham; analytic influence inference for CS. Python Monte "
-            "Carlo is a distinct saved checkpoint, not pooled here."
+            "for TWFE/Sun–Abraham; analytic influence inference for CS. The Python Monte Carlo experiment "
+            "is reported separately and is not pooled here."
         ),
         layout="Xrrrrr",
     )
@@ -433,7 +433,7 @@ def generate(csv, js, macro, table, fmt):
     )
     table(
         "balanced",
-        ["Event", "Estimate", "SE", "Lower95%", "Upper95%"],
+        ["Event", "Estimate", "SE", "Lower 95%", "Upper 95%"],
         [
             [int(a.event), fmt(a.estimate, 4), fmt(a.se, 4), fmt(a.lo95, 4), fmt(a.hi95, 4)]
             for _, a in balanced.iterrows()
